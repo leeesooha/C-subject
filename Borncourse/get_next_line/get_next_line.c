@@ -6,7 +6,15 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 15:10:48 by soohlee           #+#    #+#             */
-/*   Updated: 2022/12/21 15:10:57 by soohlee          ###   ########.fr       */
+/*   Updated: 2022/12/21 20:16:02 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "get_next_line.h"
+
+char	*get_next_line(int fd)
+{
+	t_fileinfo	fileinfo;
+
+	
+}
