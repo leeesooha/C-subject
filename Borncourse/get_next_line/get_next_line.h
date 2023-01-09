@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 15:10:50 by soohlee           #+#    #+#             */
-/*   Updated: 2022/12/21 18:16:00 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/01/09 21:00:34 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 typedef struct s_fileinfo
 {
 	int					fd;
-	char				*buffer;
+	char				*backup;
 	struct s_fileinfo	*next;
 }						t_fileinfo;
 char	*get_next_line(int fd);
