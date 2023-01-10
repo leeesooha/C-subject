@@ -6,12 +6,43 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 15:10:48 by soohlee           #+#    #+#             */
-/*   Updated: 2023/01/09 21:00:36 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/01/10 21:27:32 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
+
+int	free_lst(t_fileinfo **lst)
+{
+	t_fileinfo	*next_temp;
+	t_fileinfo	*lst_temp;
+
+	lst_temp = *lst;
+	while (lst_temp)
+	{
+		next_temp = lst_temp->next;
+		free(lst_temp->backup);
+		free(lst_temp);
+		lst_temp = next_temp;
+	}
+	return (0);
+}
+
+int	free_fd(t_fileinfo **lst, t_fileinfo *files)
+{
+	t_fileinfo	*lst_temp;
+	t_fileinfo	*next_temp;
+
+	lst_temp = *lst;
+	if (lst_temp->fd == files->fd)
+	{
+		next_temp = lst_temp->next;
+		free(lst_temp->backup);
+		free(lst_temp);
+		lst_temp = next_temp;
+	}
+}
 
 t_fileinfo	*ft_find_fd(t_fileinfo **lst, int fd)
 {
@@ -27,7 +58,7 @@ t_fileinfo	*ft_find_fd(t_fileinfo **lst, int fd)
 	}
 	files = (t_fileinfo *)malloc(sizeof(t_fileinfo));
 	if (!files)
-		return (NULL);
+		return (0);		//파일을 만들때실패했다면 겟넷라 종료
 	files->fd = fd;
 	files->backup = 0;
 	files->next = 0;
@@ -38,21 +69,44 @@ t_fileinfo	*ft_find_fd(t_fileinfo **lst, int fd)
 	return (files);
 }
 
+int	check_backup(char **get_print, t_fileinfo **lst, t_fileinfo *files)
+{
+	size_t		i;
+	t_fileinfo	*lst_temp;
+
+	lst_temp = *lst;
+	i = 0;
+	while (files->backup[i])
+	{
+		if (files->backup[i] == '\n')
+		{
+			*get_print = ft_substr(files->backup, 0, i);
+			if (!get_print)
+			{
+				get_print = free_fd(*lst, files);		//백업삭제 후 fd삭제 후 양옆노드연결
+				return (0);
+			}
+			// 성공시 백업을 개행전까지 삭제;
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
+
 char	*get_next_line(int fd)
 {
-	static t_fileinfo	*lst;		//연결리스트로 된 구조체들의 첫번째 주소
-	t_fileinfo			*files;		//현재 사용할 구조체주소
+	static t_fileinfo	*lst;
+	t_fileinfo			*files;
+	char				*get_print;
 
-	files = ft_find_fd(&lst, fd);	//fd로 구분하여 현재 사용할 파일정보 반환함. 
+	files = ft_find_fd(&lst, fd);
 	if (!files)
-		return (0);					//파일정보가담긴구조체생성시 동작할당오류로 실패시 종료
-	//연결리스트 연결 완료. 여기까지 특징 : lst는 항상 연결리스트에 가장 첫주소를 가지고 있다. , files은 현재사용할 구조체주소를 가지고 있다.
-//  1. 버퍼읽기 전에 backup에 문자가 있는지 확인한다.
-//		개행이 "있다면" 개행까지 print_get에 저장, backup엔 개행까지삭제 후 남은 문자열 저장, print_get반환하며 함수 종료
-//		개행이 "없다면" 다음 단계 이동
-//	2. 개행이 나올때까지 버퍼를 읽는다. 버퍼를 읽은만큼 backup에 이어 붙인다(backup뒤는 null로 처리시도)
-//		개행까지만 print_get에 복사, backup에선 개행까진 삭제한다.
-//	3. print_get 반환
-
+		return (0);
+	if (!check_backup(&get_print, &lst, files))
+		return (get_print);
+	
 	return (0);
 }
+
+//check_backup이 실패시 && 개행찾을시 0 리턴종료 후 get_print반환(실패시 get_print에 널포인터대입) , 개행 못찾으면 복사할 문자가 없으므로 get_print에 아무동작하지 않고 1리턴
