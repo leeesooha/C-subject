@@ -6,65 +6,65 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 15:10:48 by soohlee           #+#    #+#             */
-/*   Updated: 2023/01/11 15:59:40 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/01/11 20:55:07 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
 
-int	find_file(t_fileinfo **lst, int fd, t_fileinfo **files)
+char	*get_next_line(int fd)
 {
-	t_fileinfo	*temp;
+	static t_fileinfo	*lst;
+	t_fileinfo			*files;
+	char				*get_print;
 
-	temp = *lst;
-	while (temp && temp->next)
-	{
-		if (temp->fd == fd)
-		{
-			*files = temp;
-			return (1);
-		}
-		temp = temp->next;
-	}
-	*files = (t_fileinfo *)malloc(sizeof(t_fileinfo));
-	if (!*files)
-		return (0);		//파일을 만들때실패했다면 겟넷라 종료
-	(*files)->fd = fd;
-	(*files)->backup = 0;
-	(*files)->next = 0;
-	if (!temp)
-		*lst = *files;
-	else
-		temp->next = *files;
-	return (1);
+	if (!(find_file(&lst, fd, &files)))
+		return (0);
+	
+	// 1. print_get에 backup이어 붙이기
+	// 2. 백업에 새 버퍼 읽어오기
+	// 3. 새버퍼 print_get에 이어붙이기
+	// 4. 개행 찾으면 print_get개행전까지 자르고, 백업은 개행이후부터 저장 후 print_get반환 종료.
+//참고 조건
+	// while (!(ft_strchr((files->backup), '\n'))),
+	// 	{ read반환:0 && backup에 아무것도 없으면 메인 함수 종료 }
+	// 	{ read반환:0 && backup에 뭐라도 있으면 있는거 출력변수에 옮기고 백업프리후 종료 }
+	return (get_print);
 }
 
-// 백업삭제 후 fd삭제 후 양옆노드연결, 성공시 백업을 개행전까지 삭제;
-int	check_backup_newline(char **get_print, t_fileinfo **lst, t_fileinfo *files)
+// 헷갈린점 : read사용시 buf는 버퍼사이즈로 기반으로 변수를 만들어야 한다. 
+// ex) char buf[BUFFER_SIZE]; read(fd, buf, BUFFER_SIZE);
+
+// 궁금중 : 
+// 2. 연결리스트 전체는 언제 해제하는것인가?
+
+int	find_file(t_fileinfo **lst, int fd, t_fileinfo **files)
 {
-	size_t		i;
 	t_fileinfo	*lst_temp;
-	char		*temp;
+	t_fileinfo	*before_temp;
 
 	lst_temp = *lst;
-	i = 0;
-	while (files->backup[i])
+	while (lst_temp)
 	{
-		if (files->backup[i] == '\n')
+		if (lst_temp->fd == fd)
 		{
-			*get_print = ft_substr(files->backup, 0, i);
-			if (!*get_print)
-				return (free_fd(*lst, files));
-			temp = ft_substr(files->backup, i + 1, ft_strlen(files->backup));
-			if (!temp)
-				return (free_fd(*lst, files));
-			free(files->backup);
-			files->backup = temp;
-			return (0);
+			*files = lst_temp;
+			return (1);
 		}
-		i++;
+		before_temp = lst_temp;
+		lst_temp = lst_temp->next;
 	}
+	*files = (t_fileinfo *)malloc(sizeof(t_fileinfo));
+	if (!*files || fd < 0)
+		return (0);		//파일을 만들때실패했다면 겟넷라 종료
+	(*files)->fd = fd;
+	(*files)->backup = ft_strdup("");
+	(*files)->next = 0;
+	if (!lst_temp)
+		*lst = *files;
+	else
+		before_temp->next = *files;
 	return (1);
 }
 
@@ -109,19 +109,3 @@ int	free_lst(t_fileinfo **lst)
 	}
 	return (0);
 }
-
-char	*get_next_line(int fd)
-{
-	static t_fileinfo	*lst;
-	t_fileinfo			*files;
-	char				*get_print;
-
-	if (!(find_file(&lst, fd, &files)))
-		return (0);
-	if (!check_backup_newline(&get_print, &lst, files))
-		return (get_print);
-	
-	return (0);
-}
-
-

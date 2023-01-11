@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 15:10:46 by soohlee           #+#    #+#             */
-/*   Updated: 2023/01/11 15:59:42 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/01/11 20:55:06 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,50 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	}
 	m_s[i] = 0;
 	return (m_s);
+}
+
+size_t	ft_strchr(const char *s, int c)
+{
+	size_t	i;
+	char	*s1;
+	char	c1;
+
+	s1 = (char *)s;
+	c1 = (char)c;
+	i = 0;
+	while (s1[i])
+	{
+		if (s1[i] == c1)
+			return (i);
+		i++;
+	}
+	return (0);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*new_str;
+	size_t	i;
+	size_t	j;
+
+	if (!s1 || !s2)
+	{
+		free(s1);
+		return (0);
+	}
+	new_str = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!new_str)
+	{
+		free(s1);
+		return (0);
+	}
+	i = 0;
+	j = 0;
+	while (s1[i] != '\0')
+		new_str[i++] = s1[j++];
+	j = 0;
+	while (s2[j] != '\0')
+		new_str[i++] = s2[j++];
+	new_str[i] = '\0';
+	return (new_str);
 }
