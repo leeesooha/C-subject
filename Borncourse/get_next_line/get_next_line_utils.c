@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 15:10:46 by soohlee           #+#    #+#             */
-/*   Updated: 2023/01/10 16:43:59 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/01/11 15:59:42 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,27 +43,27 @@ size_t	ft_strlen(const char *s)
 	return (n);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char *s, unsigned int start, size_t len)
 {
-	char	*m1;
+	char	*m_s;
 	size_t	i;
-	size_t	after_len;
 
-	i = 0;
-	if ((ft_strlen((s)) < start) || s == 0)
+	if (start > len)
 		return (ft_strdup(""));
-	after_len = ft_strlen(s + start);
-	if (after_len < len)
-		len = after_len;
-	s = s + start;
-	m1 = (char *)malloc(sizeof(char) * len + 1);
-	if (m1 == 0)
-		return (0);
-	while (i < len && i < after_len)
+	if (start)
 	{
-		m1[i] = s[i];
+		len = len - start + 1;
+		s = s + start;
+	}
+	i = 0;
+	m_s = (char *)malloc(sizeof(char) * len + 1);
+	if (m_s == 0)
+		return (0);
+	while (i < len)
+	{
+		m_s[i] = s[i];
 		i++;
 	}
-	m1[i] = 0;
-	return (m1);
+	m_s[i] = 0;
+	return (m_s);
 }

@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 15:10:50 by soohlee           #+#    #+#             */
-/*   Updated: 2023/01/10 16:44:00 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/01/11 15:59:42 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_fileinfo
 }						t_fileinfo;
 char	*get_next_line(int fd);
 
-char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_substr(char *s, unsigned int start, size_t len);
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s1);
 
