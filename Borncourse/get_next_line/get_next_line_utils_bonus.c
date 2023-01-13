@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 15:10:46 by soohlee           #+#    #+#             */
-/*   Updated: 2023/01/13 10:08:13 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/01/13 10:08:12 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
+#include <stdio.h>
 
 char	*ft_strdup(const char *s1)
 {
@@ -97,11 +98,11 @@ char	*ft_strjoin(char *s1, char *s2)
 	size_t	i;
 	size_t	j;
 
-	if (!s1 || !s2)
-	{
-		free(s1);
-		return (0);
-	}
+	// if (!s1 || !s2)
+	// {
+	// 	free(s1);
+	// 	return (0);
+	// }
 	new_str = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!new_str)
 	{
