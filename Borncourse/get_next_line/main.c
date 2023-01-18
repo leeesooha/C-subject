@@ -1,10 +1,8 @@
 #include <fcntl.h>
 #include <stdio.h>
-#include "get_next_line_bonus.h"
-#include "get_next_line_utils_bonus.c"
-#include "get_next_line_bonus.c"
-
-
+#include "get_next_line.c"
+#include "get_next_line.h"
+#include "get_next_line_utils.c"
 
 int	main(void)
 {
@@ -17,7 +15,6 @@ int	main(void)
 	fd6 = open("gogo.txt", O_RDONLY);
 	fd7 = open("test.txt", O_RDONLY);
 
-/*
 	res_str = get_next_line(fd3);
 	printf("%s", res_str);
 	free(res_str);
@@ -94,19 +91,24 @@ int	main(void)
 	res_str = get_next_line(fd3);
 	printf("%s", res_str);
 	free(res_str);
-*/
-	int 	i = 0;
+
+
 	res_str = get_next_line(fd7);
 	while (res_str)
-	{
-//		printf("-%d-", i);
-//		printf("%s", res_str);
+	{		
+		printf("%s", res_str);
 		free(res_str);
 		res_str = get_next_line(fd7);
-		i++;
 	}
 	res_str = get_next_line(fd7);
-//	printf("\n%s", res_str);
+	printf("\n%s", res_str);
+
+	printf("%s",get_next_line(fd3));
+	printf("%s",get_next_line(fd3));
+	printf("%s",get_next_line(fd3));
+	printf("%s",get_next_line(fd3));
+	printf("%s",get_next_line(fd3));
+	printf("%s",get_next_line(fd3));
 
 	return (0);
 }
