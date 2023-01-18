@@ -1,8 +1,8 @@
 #include <fcntl.h>
 #include <stdio.h>
-#include "get_next_line.h"
-#include "get_next_line_utils.c"
-#include "get_next_line.c"
+#include "get_next_line_bonus.h"
+#include "get_next_line_utils_bonus.c"
+#include "get_next_line_bonus.c"
 
 
 
@@ -95,11 +95,18 @@ int	main(void)
 	printf("%s", res_str);
 	free(res_str);
 */
+	int 	i = 0;
 	res_str = get_next_line(fd7);
-	printf("%s", res_str);
-	free(res_str);
-	system("leaks a.out");
-
+	while (res_str)
+	{
+//		printf("-%d-", i);
+//		printf("%s", res_str);
+		free(res_str);
+		res_str = get_next_line(fd7);
+		i++;
+	}
+	res_str = get_next_line(fd7);
+//	printf("\n%s", res_str);
 
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 15:10:46 by soohlee           #+#    #+#             */
-/*   Updated: 2023/01/13 10:08:13 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/01/18 11:07:12 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,28 +43,21 @@ size_t	ft_strlen(const char *s)
 	return (n);
 }
 
-char	*ft_substr(char *s, unsigned int start, size_t len, int e)
+char	*ft_substr(char *s, unsigned int start, size_t len)
 {
 	char	*m_s;
 	size_t	i;
 
-	if (start > len || e == -1)
+	if (start >= ft_strlen(s) || len == 0)
 		return (ft_strdup(""));
-	if (len == 0 && ft_strlen(s))
-		len = ft_strlen(s);
-	else if (len == 0 && !ft_strlen(s) && !start)
-		return (0);
-	if (start)	// s, 1, 2, 0
-	{
-		len = len - start + 1;
-		s = s + start;
-	}
-	i = 0;
+	if (len > ft_strlen(s) - start)
+		len = ft_strlen(s) - start;
+	s += start;
 	m_s = (char *)malloc(sizeof(char) * len + 1);
 	if (m_s == 0)
 		return (0);
-//	printf("%zu\n", len);
-	while (i < len)
+	i = 0;
+	while (s[i] && i < len)
 	{
 		m_s[i] = s[i];
 		i++;
@@ -97,23 +90,15 @@ char	*ft_strjoin(char *s1, char *s2)
 	size_t	i;
 	size_t	j;
 
-	if (!s1 || !s2)
-	{
-		free(s1);
-		return (0);
-	}
 	new_str = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!new_str)
-	{
-		free(s1);
 		return (0);
-	}
 	i = 0;
 	j = 0;
-	while (s1[i] != '\0')
+	while (s1[j])
 		new_str[i++] = s1[j++];
 	j = 0;
-	while (s2[j] != '\0')
+	while (s2[j])
 		new_str[i++] = s2[j++];
 	new_str[i] = '\0';
 	return (new_str);

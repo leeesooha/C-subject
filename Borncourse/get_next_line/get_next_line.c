@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 15:10:48 by soohlee           #+#    #+#             */
-/*   Updated: 2023/01/13 10:08:13 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/01/18 11:06:26 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	find_file(t_fileinfo **lst, int fd, t_fileinfo **files)
 		return (0);
 	(*files)->fd = fd;
 	(*files)->backup = ft_strdup("");
-	(*files)->next = 0;
+	(*files)->next = NULL;
 	if (!(*lst))
 		*lst = *files;
 	else
@@ -71,30 +71,25 @@ int	find_file(t_fileinfo **lst, int fd, t_fileinfo **files)
 
 char	*free_fd(t_fileinfo **lst, t_fileinfo **files)
 {
-	t_fileinfo	*lst_temp;
-	t_fileinfo	*next_temp;
+	t_fileinfo	*cur_node;
+	t_fileinfo	*prev_node;
 
-	lst_temp = *lst;
-	if (lst_temp->fd == (*files)->fd)
+	cur_node = *lst;
+	if (cur_node == *files)
+		*lst = cur_node->next;
+	else
 	{
-		next_temp = lst_temp->next;
-		if (lst_temp->backup)
-			free(lst_temp->backup);
-		free(lst_temp);
-		lst_temp = next_temp;
-		*lst = lst_temp;
-		return (0);
+		while (cur_node != *files)
+		{
+			prev_node = cur_node;
+			cur_node = cur_node->next;
+		}
+		prev_node->next = cur_node->next;
 	}
-	while (lst_temp->fd != (*files)->fd)
-	{
-		next_temp = lst_temp;
-		lst_temp = lst_temp->next;
-	}
-	next_temp->next = lst_temp->next;
-	if (lst_temp->backup)
-		free(lst_temp->backup);
-	free(lst_temp);
-	return (0);
+	if (cur_node->backup)
+		free(cur_node->backup);
+	free(cur_node);
+	return (NULL);
 }
 
 int	get_buff(t_fileinfo **files)
@@ -110,7 +105,7 @@ int	get_buff(t_fileinfo **files)
 			return (0);
 		if (read_len == 0)
 			return (1);
-		buff[BUFFER_SIZE] = '\0';
+		buff[read_len] = '\0';
 		temp = (*files)->backup;
 		(*files)->backup = ft_strjoin((*files)->backup, buff);
 		free(temp);
@@ -123,22 +118,21 @@ int	get_buff(t_fileinfo **files)
 int	get_print(char **res_str, t_fileinfo **file)
 {
 	char	*temp;
-	size_t	newline_point;
-	size_t	backup_len;
-	int		e;
+	size_t	i;
 
-	e = 0;
-	backup_len = 1 + ft_strlen((*file)->backup);
-	newline_point = ft_strchr((*file)->backup, '\n');
-	if (!newline_point)
-		e = -1;
-	*res_str = ft_substr((*file)->backup, 0, newline_point, 0);
+	i = 0;
+	while (((*file)->backup)[i] && ((*file)->backup)[i] != '\n')
+		i++;
+	*res_str = ft_substr((*file)->backup, 0, i + 1);
 	if (!(*res_str))
 		return (0);
 	temp = (*file)->backup;
-	(*file)->backup = ft_substr((*file)->backup, newline_point, backup_len, e);
+	(*file)->backup = ft_substr((*file)->backup, i + 1, -1);
 	free(temp);
 	if (!((*file)->backup))
+	{
+		free(*res_str);
 		return (0);
+	}
 	return (1);
 }
