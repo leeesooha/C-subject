@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/18 15:44:43 by soohlee           #+#    #+#             */
-/*   Updated: 2022/12/09 19:49:05 by soohlee          ###   ########.fr       */
+/*   Created: 2023/02/08 17:04:51 by soohlee           #+#    #+#             */
+/*   Updated: 2023/02/27 19:01:02 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "push_swap.h"
 
-int	ft_putchar_fd(char c, int fd, int *prfcnt)
+int	push_swap(int i)
 {
-	if (write(fd, &c, 1) == -1)
-		return (-1);
-	*prfcnt += 1;
-	return (1);
+	i = 0;
+
+	return (0);
 }

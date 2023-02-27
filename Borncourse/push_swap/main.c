@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/18 15:49:09 by soohlee           #+#    #+#             */
-/*   Updated: 2022/12/09 19:46:44 by soohlee          ###   ########.fr       */
+/*   Created: 2023/02/08 13:33:00 by soohlee           #+#    #+#             */
+/*   Updated: 2023/02/27 19:01:04 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "push_swap.h"
 
-int	ft_putstr_fd(char *s, int fd, int *prfcnt)
+int	main(int argc, char **argv)
 {
-	if (s == 0)
-	{
-		if (write(fd, "(null)", 6) == -1)
-		{
-			return (-1);
-		}
-		*prfcnt += 6;
-		return (1);
-	}
-	if (write(fd, s, ft_strlen(s)) == -1)
-		return (-1);
-	*prfcnt += ft_strlen(s);
-	return (1);
+	int	*a_stack;
+
+	parsing(argc, argv, &a_stack);
+	return (0);
 }

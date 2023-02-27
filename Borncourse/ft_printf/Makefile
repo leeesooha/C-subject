@@ -1,11 +1,11 @@
 SRCS =	ft_printf.c \
-		ft_put_addrhex.c \
-		ft_put_hex.c \
-		ft_unsigned_putnbr_fd.c \
-		ft_putchar_fd.c \
-		ft_putnbr_fd.c \
-		ft_putstr_fd.c \
-		ft_strlen.c
+		ft_prf_put_addrhex.c \
+		ft_prf_put_hex.c \
+		ft_prf_unsigned_putnbr_fd.c \
+		ft_prf_putchar_fd.c \
+		ft_prf_putnbr_fd.c \
+		ft_prf_putstr_fd.c \
+		ft_prf_strlen.c
 
 OBJS = $(SRCS:.c=.o)
 CC = cc

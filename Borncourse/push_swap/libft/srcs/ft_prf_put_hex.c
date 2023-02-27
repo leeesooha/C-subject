@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_put_hex.c                                       :+:      :+:    :+:   */
+/*   ft_prf_put_hex.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 19:05:06 by soohlee           #+#    #+#             */
-/*   Updated: 2022/12/08 12:52:03 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/02/08 23:20:17 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/libft.h"
 
 static int	recursive_hex(unsigned int ap, char	*hex, int *prfcnt, int fd)
 {
@@ -18,7 +18,7 @@ static int	recursive_hex(unsigned int ap, char	*hex, int *prfcnt, int fd)
 		recursive_hex(ap / 16, hex, prfcnt, fd);
 	if (*prfcnt < 0)
 		return (-1);
-	if (ft_putchar_fd(hex[ap % 16], fd, prfcnt) == -1)
+	if (ft_prf_putchar_fd(hex[ap % 16], fd, prfcnt) == -1)
 	{
 		*prfcnt = -1;
 		return (-1);
@@ -26,7 +26,7 @@ static int	recursive_hex(unsigned int ap, char	*hex, int *prfcnt, int fd)
 	return (*prfcnt);
 }
 
-int	ft_put_hex(unsigned int ap, int *prfcnt, char format, int fd)
+int	ft_prf_put_hex(unsigned int ap, int *prfcnt, char format, int fd)
 {
 	char	*hex;
 
