@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 12:33:56 by soohlee           #+#    #+#             */
-/*   Updated: 2022/11/30 09:54:07 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/04 18:10:22 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,16 @@ static char	*wordcpy(char *s1, char *s2, size_t len)
 
 static void	frmal(char **s, size_t i)
 {
-	if (i == 0)
-		return ;
-	i -= 1;
-	while (i)
+	if (i != 0)
 	{
-		free(s[i]);
-		i--;
+		i -= 1;
+		while (i)
+		{
+			free(s[i]);
+			i--;
+		}
+		free (s[i]);
 	}
-	free (s[i]);
 	free (s);
 }
 
