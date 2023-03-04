@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:37:14 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/03 12:47:03 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/04 17:03:31 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,21 @@ int	chk_digit(char **str_stack)
 				error_print();
 			j++;
 		}
-		if (!ft_strncmp(str_stack[i], "-", 2) || !ft_strncmp(str_stack[i], "+", 2))
+		if (!ft_strncmp(str_stack[i], "-", 2)
+			|| !ft_strncmp(str_stack[i], "+", 2))
 			error_print();
 		i++;
 	}
+	return (0);
+}
+
+int	free_double_pointer(char **s)
+{
+	char	**temp_space;
+
+	temp_space = s;
+	while (*s)
+		free(*s++);
+	free (temp_space);
 	return (0);
 }

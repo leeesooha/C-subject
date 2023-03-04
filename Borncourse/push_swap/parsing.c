@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 10:45:04 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/03 13:39:09 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/04 17:07:24 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	parsing(int argc, char **argv, int **a_stack)
 		exit(1);
 	argv_merge(argv, &str_stack_oneline);
 	make_stack(ft_split(str_stack_oneline, ' '), a_stack);
+	free(str_stack_oneline);
 	a_stack = 0;
 	argv = 0;
 	return (0);
@@ -38,7 +39,7 @@ int	argv_merge(char **argv, char **str_stack_oneline)
 		{
 			free_space = *str_stack_oneline;
 			*str_stack_oneline = ft_strjoin(*str_stack_oneline, " ");
-				free(free_space);
+			free(free_space);
 			chk_malloc(*str_stack_oneline);
 		}
 		free_space = *str_stack_oneline;
@@ -56,14 +57,14 @@ int	make_stack(char **str_stack, int **a_stack)
 
 	chk_digit(str_stack);
 	i = 0;
-	while(str_stack[i])
+	while (str_stack[i])
 		i++;
 	*a_stack = (int *)malloc(sizeof(int) * i + 1);
 	chk_malloc(*a_stack);
 	i = 0;
-	while(str_stack[i])
+	while (str_stack[i])
 	{
-		(*a_stack)[i] = ft_atoi_NoOverflow(str_stack[i]);
+		(*a_stack)[i] = ft_atoi_no_overflow(str_stack[i]);
 		j = 0;
 		while (j < i)
 		{
@@ -73,6 +74,7 @@ int	make_stack(char **str_stack, int **a_stack)
 		}
 		i++;
 	}
+	free_double_pointer(str_stack);
 	return (0);
 }
 
@@ -82,7 +84,7 @@ void	error_print(void)
 	exit (1);
 }
 
-void chk_malloc(void *s)
+void	chk_malloc(void *s)
 {
 	if (s == 0)
 		exit (1);

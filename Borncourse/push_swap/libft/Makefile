@@ -9,7 +9,7 @@ SRCS =	ft_putnbr_fd.c ft_putendl_fd.c ft_putstr_fd.c ft_putchar_fd.c ft_striteri
 		ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c get_next_line_bonus.c \
 		get_next_line_utils_bonus.c ft_printf.c ft_prf_put_addrhex.c \
 		ft_prf_put_hex.c ft_prf_unsigned_putnbr_fd.c ft_prf_putchar_fd.c \
-		ft_prf_putnbr_fd.c ft_prf_putstr_fd.c ft_prf_strlen.c ft_atoi_NoOverflow.c
+		ft_prf_putnbr_fd.c ft_prf_putstr_fd.c ft_prf_strlen.c ft_atoi_no_overflow.c
 
 SRCDIR = $(addprefix ./srcs/, $(SRCS))
 OBJS = $(SRCDIR:.c=.o)

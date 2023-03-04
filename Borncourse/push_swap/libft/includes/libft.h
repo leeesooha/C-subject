@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 15:30:11 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/02 22:07:47 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/04 16:39:17 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,6 @@ char	*ft_gnl_strdup(const char *s1);
 size_t	ft_gnl_strchr(const char *s, int c);
 
 //push_swap
-int	ft_atoi_NoOverflow(const char *str);
+int		ft_atoi_no_overflow(const char *str);
 
-# endif
+#endif
