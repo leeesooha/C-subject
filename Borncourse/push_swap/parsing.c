@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 10:45:04 by soohlee           #+#    #+#             */
-/*   Updated: 2023/02/27 19:01:05 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/03 13:39:09 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,76 @@
 
 int	parsing(int argc, char **argv, int **a_stack)
 {
-	if (argc < 2)
+	char	*str_stack_oneline;
+
+	str_stack_oneline = ft_strdup("");
+	if (argc < 2 || !str_stack_oneline)
 		exit(1);
-	str_parsing(argc, argv, a_stack);
+	argv_merge(argv, &str_stack_oneline);
+	make_stack(ft_split(str_stack_oneline, ' '), a_stack);
 	a_stack = 0;
 	argv = 0;
 	return (0);
 }
 
-int	str_parsing(int argc, char **argv, int **a_stack)
+int	argv_merge(char **argv, char **str_stack_oneline)
 {
-	int				i;
-	int				j;
+	int		i;
+	char	*free_space;
 
-	argc = 0;
-	a_stack = 0;
 	i = 0;
 	while (argv[++i])
 	{
-		j = -1;
-		while (argv[i][++j])
-			chk_digit(argv, i, j);
-		if (ft_strchr(argv[i], ' '))
-			split_stack_add(argv[i], a_stack);
-		else
-			stack_add(argv[i], a_stack);
+		if (i != 1)
+		{
+			free_space = *str_stack_oneline;
+			*str_stack_oneline = ft_strjoin(*str_stack_oneline, " ");
+				free(free_space);
+			chk_malloc(*str_stack_oneline);
+		}
+		free_space = *str_stack_oneline;
+		*str_stack_oneline = ft_strjoin(*str_stack_oneline, argv[i]);
+		free(free_space);
+		chk_malloc(*str_stack_oneline);
 	}
 	return (0);
+}
+
+int	make_stack(char **str_stack, int **a_stack)
+{
+	size_t	i;
+	size_t	j;
+
+	chk_digit(str_stack);
+	i = 0;
+	while(str_stack[i])
+		i++;
+	*a_stack = (int *)malloc(sizeof(int) * i + 1);
+	chk_malloc(*a_stack);
+	i = 0;
+	while(str_stack[i])
+	{
+		(*a_stack)[i] = ft_atoi_NoOverflow(str_stack[i]);
+		j = 0;
+		while (j < i)
+		{
+			if ((*a_stack)[i] == (*a_stack)[j])
+				error_print();
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+void	error_print(void)
+{
+	write(1, "Error\n", 6);
+	exit (1);
+}
+
+void chk_malloc(void *s)
+{
+	if (s == 0)
+		exit (1);
 }
