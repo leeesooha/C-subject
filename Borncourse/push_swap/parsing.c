@@ -6,28 +6,28 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 10:45:04 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/04 18:15:42 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/06 16:08:52 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	parsing(int argc, char **argv, int **a_stack)
+int	parsing(int argc, char **argv, int **num_array)
 {
-	char	*str_stack_oneline;
+	char	*str_oneline;
 
-	str_stack_oneline = ft_strdup("");
-	if (argc < 2 || !str_stack_oneline)
+	str_oneline = ft_strdup("");
+	if (argc < 2 || !str_oneline)
 		exit(1);
-	argv_merge(argv, &str_stack_oneline);
-	make_stack(ft_split(str_stack_oneline, ' '), a_stack);
-	free(str_stack_oneline);
-	a_stack = 0;
+	argv_merge(argv, &str_oneline);
+	make_stack(ft_split(str_oneline, ' '), num_array);
+	free(str_oneline);
+	num_array = 0;
 	argv = 0;
 	return (0);
 }
 
-int	argv_merge(char **argv, char **str_stack_oneline)
+int	argv_merge(char **argv, char **str_oneline)
 {
 	int		i;
 	char	*free_space;
@@ -37,44 +37,44 @@ int	argv_merge(char **argv, char **str_stack_oneline)
 	{
 		if (i != 1)
 		{
-			free_space = *str_stack_oneline;
-			*str_stack_oneline = ft_strjoin(*str_stack_oneline, " ");
+			free_space = *str_oneline;
+			*str_oneline = ft_strjoin(*str_oneline, " ");
 			free(free_space);
-			chk_malloc(*str_stack_oneline);
+			chk_malloc(*str_oneline);
 		}
-		free_space = *str_stack_oneline;
-		*str_stack_oneline = ft_strjoin(*str_stack_oneline, argv[i]);
+		free_space = *str_oneline;
+		*str_oneline = ft_strjoin(*str_oneline, argv[i]);
 		free(free_space);
-		chk_malloc(*str_stack_oneline);
+		chk_malloc(*str_oneline);
 	}
 	return (0);
 }
 
-int	make_stack(char **str_stack, int **a_stack)
+int	make_stack(char **str_double, int **num_array)
 {
 	size_t	i;
 	size_t	j;
 
-	chk_digit(str_stack);
+	chk_digit(str_double);
 	i = 0;
-	while (str_stack[i])
+	while (str_double[i])
 		i++;
-	*a_stack = (int *)malloc(sizeof(int) * i + 1);
-	chk_malloc(*a_stack);
+	*num_array = (int *)malloc(sizeof(int) * i + 1);
+	chk_malloc(*num_array);
 	i = 0;
-	while (str_stack[i])
+	while (str_double[i])
 	{
-		(*a_stack)[i] = ft_atoi_no_overflow(str_stack[i]);
+		(*num_array)[i] = ft_atoi_no_overflow(str_double[i]);
 		j = 0;
 		while (j < i)
 		{
-			if ((*a_stack)[i] == (*a_stack)[j])
+			if ((*num_array)[i] == (*num_array)[j])
 				error_print();
 			j++;
 		}
 		i++;
 	}
-	free_double_pointer(str_stack);
+	free_double_pointer(str_double);
 	return (0);
 }
 
