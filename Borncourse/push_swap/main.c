@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:33:00 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/06 16:03:50 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/06 16:29:59 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 
 int	main(int argc, char **argv)
 {
-	int	*num_array;
+	int		*num_array;
 
 	parsing(argc, argv, &num_array);
+	push_swap(num_array);
 	free(num_array);
 	return (0);
 }

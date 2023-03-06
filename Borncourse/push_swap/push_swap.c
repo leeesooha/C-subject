@@ -12,10 +12,8 @@
 
 #include "push_swap.h"
 
-int	push_swap(int i)
+int	push_swap(int *num_array)
 {
-	i = 0;
-	if (i > 0)
-		return (1);
+	
 	return (0);
 }
