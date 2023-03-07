@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:46:27 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/04 16:36:50 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/07 19:57:48 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,24 @@ static unsigned long long	atoi_check_no_overflow(const char *str, int flag)
 
 static const char	*str_check_no_overflow(const char *str)
 {
+	int			flag;
+	long long	i;
+
 	while (*str == ' ' || *str == '\n' || *str == '\t' || *str == '\v'
 		|| *str == '\r' || *str == '\f')
 		str++;
+	flag = 0;
+	i = 0;
+	while (str[i] == '+' || str[i] == '-')
+	{
+		flag += 1;
+		if (flag == 2)
+		{
+			write(1, "Error\n", 6);
+			exit(1);
+		}
+		i++;
+	}
 	return (str);
 }
 

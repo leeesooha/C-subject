@@ -1,4 +1,4 @@
-SRCS = push_swap.c parsing.c parsing_utils.c\
+SRCS = push_swap.c parsing.c parsing_utils.c instructions1.c instructions2.c
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror

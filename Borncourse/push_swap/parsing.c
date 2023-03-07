@@ -6,24 +6,27 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 10:45:04 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/06 16:11:19 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/07 20:32:20 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	parsing(int argc, char **argv, int **num_array)
+int	parsing(int argc, char **argv, int **num_array, t_list **a_stack)
 {
-	char	*str_oneline;
+	char		*str_oneline;
+	long long	stack_len;
+	long long	i;
 
 	str_oneline = ft_strdup("");
 	if (argc < 2 || !str_oneline)
 		exit(1);
 	argv_merge(argv, &str_oneline);
-	make_num_array(ft_split(str_oneline, ' '), num_array);
+	stack_len = make_num_array(ft_split(str_oneline, ' '), num_array);
 	free(str_oneline);
-	num_array = 0;
-	argv = 0;
+	i = 0;
+	while (i < stack_len)
+		ft_lstadd_back(a_stack, ft_lstnew(&(num_array[0][i++])));
 	return (0);
 }
 
@@ -50,10 +53,10 @@ int	argv_merge(char **argv, char **str_oneline)
 	return (0);
 }
 
-int	make_num_array(char **str_double, int **num_array)
+long long	make_num_array(char **str_double, int **num_array)
 {
-	size_t	i;
-	size_t	j;
+	long long	i;
+	long long	j;
 
 	chk_digit(str_double);
 	i = 0;
@@ -75,7 +78,7 @@ int	make_num_array(char **str_double, int **num_array)
 		i++;
 	}
 	free_double_pointer(str_double);
-	return (0);
+	return (i);
 }
 
 void	error_print(void)
