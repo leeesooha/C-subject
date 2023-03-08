@@ -6,11 +6,12 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:46:10 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/08 16:11:49 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/08 19:50:01 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 int	is_sort(t_list *stack)
 {
@@ -24,7 +25,7 @@ int	is_sort(t_list *stack)
 		stack = stack->next;
 		while ((stack))
 		{
-			if (*previous_num > *(stack->content))
+			if (*previous_num > *((int *)(stack->content)))
 				return (1);
 			previous_num = stack->content;
 			stack = stack->next;

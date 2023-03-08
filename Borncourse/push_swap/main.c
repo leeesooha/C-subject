@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:33:00 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/08 13:29:55 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/08 20:26:22 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,15 @@
 
 int	main(int argc, char **argv)
 {
-	int			*num_array;
+	int			*arr;
 	t_list		*a_stack;
 	t_list		*b_stack;
+	t_list		*cmd;
 
 	b_stack = 0;
-	parsing(argc, argv, &num_array, &a_stack);
-	push_swap(&a_stack, &b_stack);
+	parsing(argc, argv, &arr, &a_stack);
+	push_swap(&a_stack, &b_stack, &cmd, &arr);
+	print_cmd(&cmd);
 	return (0);
 }
 

@@ -1,6 +1,6 @@
 SRCS =	push_swap.c parsing.c parsing_utils.c \
 		instructions1.c instructions2.c instructions3.c \
-		hard_conding.c is_sort.c
+		hard_coding.c is_sort.c print_cmd.c
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror

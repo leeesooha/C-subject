@@ -1,47 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hard_coding.c                                      :+:      :+:    :+:   */
+/*   print_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 15:39:34 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/08 21:32:16 by soohlee          ###   ########.fr       */
+/*   Created: 2023/03/08 18:15:03 by soohlee           #+#    #+#             */
+/*   Updated: 2023/03/08 18:48:41 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
-int	hard_coding(t_list **a_stack, t_list **cmd, int **arr)
+int	print_cmd(t_list **cmd)
 {
-	int	*a;
+	t_list	*temp_cmd;
+	char	*temp_str;
 
-	a = *arr;
-	if (!is_sort(*a_stack))
-		return (0);
-	else if (ft_lstsize(*a_stack) == 2)
+	temp_cmd = *cmd;
+	while (temp_cmd)
 	{
-		ft_lstadd_back(cmd, ft_lstnew(ft_strdup("sa")));
-		return (0);
+		temp_str = (char *)temp_cmd->content;
+		write(1, temp_str, ft_strlen(temp_str));
+		write(1, "\n", 1);
+		temp_cmd = temp_cmd->next;
 	}
-	else
-	{
-		if (a[0])
-			return (0);
-	}
+	ft_lstclear(cmd, (void *)free_content);
 	return (0);
 }
-/*
-1 2 3
 
-1 3 2
-
-2 1 3
-
-2 3 1
-
-3 1 2
-
-3 2 1
-*/
+int	free_content(void *content)
+{
+	free(content);
+	return (0);
+}
