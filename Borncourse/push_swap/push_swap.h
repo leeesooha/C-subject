@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:25:58 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/07 20:51:52 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/08 16:11:46 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 //main
 int			parsing(int argc, char **argv, int **num_array, t_list **a_stack);
-int			push_swap(int *num_array);
+int			push_swap(t_list **a_stack, t_list **b_stack);
 
 //parsing
 int			argv_merge(char **argv, char **str_stack_oneline);
@@ -32,5 +32,22 @@ int			free_double_pointer(char **s);
 
 //instructions1
 int			sa(t_list **a_stack);
+int			sb(t_list **b_stack);
+int			ss(t_list **a_stack, t_list **b_stack);
+int			pa(t_list **a_stack, t_list **b_stack);
+int			pb(t_list **a_stack, t_list **b_stack);
+//instructions2
+int			rra(t_list **a_stack);
+int			rrb(t_list **b_stack);
+int			rrr(t_list **a_stack, t_list **b_stack);
+int			ra(t_list **a_stack);
+int			rb(t_list **b_stack);
+//instructions3
+int			rr(t_list **a_stack, t_list **b_stack);
+
+//hard_coding
+int			hard_coding(t_list **a_stack);
+//is_sort
+int			is_sort(t_list *stack);
 
 #endif

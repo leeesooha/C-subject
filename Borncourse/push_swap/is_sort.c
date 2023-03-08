@@ -1,20 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   is_sort.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/08 17:04:51 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/08 16:11:50 by soohlee          ###   ########.fr       */
+/*   Created: 2023/03/08 15:46:10 by soohlee           #+#    #+#             */
+/*   Updated: 2023/03/08 16:11:49 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	push_swap(t_list **a_stack, t_list **b_stack);
+int	is_sort(t_list *stack)
 {
-	if (ft_lstsize(*a_stack) >= 3)
-		return (hard_coding(*a_stack));
+	int		*previous_num;
+
+	if (ft_lstsize(stack) == 0 || ft_lstsize(stack) == 1)
+		return (0);
+	else
+	{
+		previous_num = (stack)->content;
+		stack = stack->next;
+		while ((stack))
+		{
+			if (*previous_num > *(stack->content))
+				return (1);
+			previous_num = stack->content;
+			stack = stack->next;
+		}
+	}
 	return (0);
 }
