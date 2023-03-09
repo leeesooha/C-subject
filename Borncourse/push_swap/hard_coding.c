@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:39:34 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/08 21:32:16 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/09 15:27:45 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,62 @@ int	hard_coding(t_list **a_stack, t_list **cmd, int **arr)
 		ft_lstadd_back(cmd, ft_lstnew(ft_strdup("sa")));
 		return (0);
 	}
+	else if ((a[0] == 0 && a[1] == 2 && a[2] == 1)
+		|| (a[0] == 2 && a[1] == 1 && a[2] == 0))
+		two_case(a_stack, a, cmd);
+	else
+		one_case(a_stack, a, cmd);
+	return (0);
+}
+
+int	two_case(t_list **a_stack, int *a, t_list **cmd)
+{
+	if (a[0] == 0 && a[1] == 2 && a[2] == 1)
+	{
+		ft_lstadd_back(cmd, ft_lstnew(ft_strdup("rra")));
+		ft_lstadd_back(cmd, ft_lstnew(ft_strdup("sa")));
+		rra(a_stack);
+		sa(a_stack);
+	}
 	else
 	{
-		if (a[0])
-			return (0);
+		ft_lstadd_back(cmd, ft_lstnew(ft_strdup("sa")));
+		ft_lstadd_back(cmd, ft_lstnew(ft_strdup("rra")));
+		sa(a_stack);
+		rra(a_stack);
+	}
+	return (0);
+}
+
+int	one_case(t_list **a_stack, int *a, t_list **cmd)
+{
+	if (a[0] == 1 && a[1] == 0 && a[2] == 2)
+	{
+		ft_lstadd_back(cmd, ft_lstnew(ft_strdup("sa")));
+		sa(a_stack);
+	}
+	else if (a[0] == 1 && a[1] == 2 && a[2] == 0)
+	{
+		ft_lstadd_back(cmd, ft_lstnew(ft_strdup("rra")));
+		rra(a_stack);
+	}
+	else if (a[0] == 2 && a[1] == 0 && a[2] == 1)
+	{
+		ft_lstadd_back(cmd, ft_lstnew(ft_strdup("ra")));
+		ra(a_stack);
 	}
 	return (0);
 }
 /*
-1 2 3
+0 1 2
 
-1 3 2
+0 2 1	//rra,sa
 
-2 1 3
+1 0 2	//sa
 
-2 3 1
+1 2 0	//rra
 
-3 1 2
+2 0 1	//ra
 
-3 2 1
+2 1 0	//sa,rra
 */

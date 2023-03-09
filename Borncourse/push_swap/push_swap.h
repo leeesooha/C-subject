@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:25:58 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/08 20:27:03 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/09 15:28:21 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@ int		argv_merge(char **argv, char **str_stack_oneline);
 long	make_num_array(char **str_stack, int **a_stack);
 void	error_print(void);
 void	chk_malloc(void *s);
-//parsing_until
+//parsing_utils
 int		chk_digit(char **argv);
 int		free_double_pointer(char **s);
+void	indexing(int **num_array, long long len);
 
 //instructions1
 int		sa(t_list **a_stack);
@@ -48,6 +49,9 @@ int		rr(t_list **a_stack, t_list **b_stack);
 //hard_coding
 int		hard_coding(t_list **a_stack, t_list **cmd, int **arr);
 int		free_content(void *content);
+int		two_case(t_list **a_stack, int *a, t_list **cmd);
+int		one_case(t_list **a_stack, int *a, t_list **cmd);
+
 //is_sort
 int		is_sort(t_list *stack);
 

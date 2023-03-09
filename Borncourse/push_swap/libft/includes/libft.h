@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 15:30:11 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/04 16:39:17 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/09 14:16:10 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,8 @@ size_t	ft_gnl_strchr(const char *s, int c);
 
 //push_swap
 int		ft_atoi_no_overflow(const char *str);
+
+//piscine
+void	ft_sort_int_tab(int *tab, int size);
 
 #endif

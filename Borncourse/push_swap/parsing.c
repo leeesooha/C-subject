@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 10:45:04 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/08 21:32:28 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/09 14:42:58 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	parsing(int argc, char **argv, int **num_array, t_list **a_stack)
 	argv_merge(argv, &str_oneline);
 	stack_len = make_num_array(ft_split(str_oneline, ' '), num_array);
 	free(str_oneline);
+	indexing(num_array, stack_len);
 	i = 0;
 	while (i < stack_len)
 		ft_lstadd_back(a_stack, ft_lstnew((*num_array + i++)));

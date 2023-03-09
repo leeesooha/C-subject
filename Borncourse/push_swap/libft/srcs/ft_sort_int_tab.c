@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_cmd.c                                        :+:      :+:    :+:   */
+/*   ft_sort_int_tab.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 18:15:03 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/09 15:41:45 by soohlee          ###   ########.fr       */
+/*   Created: 2023/03/09 14:15:35 by soohlee           #+#    #+#             */
+/*   Updated: 2023/03/09 14:15:48 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/libft.h"
 
-int	print_cmd(t_list **cmd)
+void	ft_sort_int_tab(int *tab, int size)
 {
-	t_list	*temp_cmd;
-	char	*temp_str;
+	int	i;
+	int	a;
 
-	temp_cmd = *cmd;
-	while (temp_cmd)
+	i = 0;
+	while (i < size - 1)
 	{
-		temp_str = (char *)temp_cmd->content;
-		write(1, temp_str, ft_strlen(temp_str));
-		write(1, "\n", 1);
-		temp_cmd = temp_cmd->next;
+		while (i < size - 1)
+		{
+			if (tab[i] > tab[i + 1])
+			{
+				a = tab[i];
+				tab[i] = tab[i + 1];
+				tab[i + 1] = a;
+			}
+		i++;
+		}
+	size--;
+	i = 0;
 	}
-	ft_lstclear(cmd, (void *)free_content);
-	return (0);
-}
-
-int	free_content(void *content)
-{
-	free(content);
-	return (0);
 }
