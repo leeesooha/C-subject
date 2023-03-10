@@ -6,12 +6,11 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:46:10 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/09 15:42:18 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/10 16:09:00 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 int	is_sort(t_list *stack)
 {
@@ -33,4 +32,3 @@ int	is_sort(t_list *stack)
 	}
 	return (0);
 }
-

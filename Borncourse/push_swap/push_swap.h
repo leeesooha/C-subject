@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:25:58 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/09 15:28:21 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/10 16:08:34 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,14 @@
 # include <unistd.h>
 # include "./libft/includes/libft.h"
 
-//main
+//삭제 후 제출
+#include <stdio.h>
+
+//main-
 int		parsing(int argc, char **argv, int **num_array, t_list **a_stack);
 int		push_swap(t_list **a_stack, t_list **b_stack, t_list **cmd, int **arr);
 int		print_cmd(t_list **cmd);
+
 //parsing
 int		argv_merge(char **argv, char **str_stack_oneline);
 long	make_num_array(char **str_stack, int **a_stack);
@@ -30,29 +34,29 @@ void	chk_malloc(void *s);
 int		chk_digit(char **argv);
 int		free_double_pointer(char **s);
 void	indexing(int **num_array, long long len);
-
 //instructions1
-int		sa(t_list **a_stack);
-int		sb(t_list **b_stack);
-int		ss(t_list **a_stack, t_list **b_stack);
-int		pa(t_list **a_stack, t_list **b_stack);
-int		pb(t_list **a_stack, t_list **b_stack);
+char	*sa(t_list **a_stack);
+char	*sb(t_list **b_stack);
+char	*ss(t_list **a_stack, t_list **b_stack);
+char	*pa(t_list **a_stack, t_list **b_stack);
+char	*pb(t_list **a_stack, t_list **b_stack);
 //instructions2
-int		rra(t_list **a_stack);
-int		rrb(t_list **b_stack);
-int		rrr(t_list **a_stack, t_list **b_stack);
-int		ra(t_list **a_stack);
-int		rb(t_list **b_stack);
+char	*rra(t_list **a_stack);
+char	*rrb(t_list **b_stack);
+char	*rrr(t_list **a_stack, t_list **b_stack);
+char	*ra(t_list **a_stack);
+char	*rb(t_list **b_stack);
 //instructions3
-int		rr(t_list **a_stack, t_list **b_stack);
-
+char	*rr(t_list **a_stack, t_list **b_stack);
 //hard_coding
 int		hard_coding(t_list **a_stack, t_list **cmd, int **arr);
 int		free_content(void *content);
 int		two_case(t_list **a_stack, int *a, t_list **cmd);
 int		one_case(t_list **a_stack, int *a, t_list **cmd);
-
 //is_sort
 int		is_sort(t_list *stack);
+
+//push_swap
+int		allpb_tpvt(t_list **a_stack, t_list **b_stack, t_list **cmd);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:51:31 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/08 16:11:48 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/10 15:42:56 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	rr(t_list **a_stack, t_list **b_stack)
+char	*rr(t_list **a_stack, t_list **b_stack)
 {
 	t_list	*first_stack;
 	t_list	*second_stack;
@@ -29,5 +29,5 @@ int	rr(t_list **a_stack, t_list **b_stack)
 	ft_lstadd_back(b_stack, first_stack);
 	first_stack->next = 0;
 	*b_stack = second_stack;
-	return (0);
+	return ("rr");
 }

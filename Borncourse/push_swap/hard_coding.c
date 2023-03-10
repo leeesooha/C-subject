@@ -6,12 +6,11 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:39:34 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/09 15:27:45 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/10 16:08:55 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 int	hard_coding(t_list **a_stack, t_list **cmd, int **arr)
 {

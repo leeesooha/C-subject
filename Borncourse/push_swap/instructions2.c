@@ -6,13 +6,13 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 20:39:26 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/08 14:49:21 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/10 15:42:56 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	rra(t_list **a_stack)
+char	*rra(t_list **a_stack)
 {
 	t_list	*last_stack;
 	t_list	*before_last_stack;
@@ -25,10 +25,10 @@ int	rra(t_list **a_stack)
 	last_stack = ft_lstlast(*a_stack);
 	ft_lstadd_front(a_stack, last_stack);
 	before_last_stack->next = 0;
-	return (0);
+	return ("rra");
 }
 
-int	rrb(t_list **b_stack)
+char	*rrb(t_list **b_stack)
 {
 	t_list	*last_stack;
 	t_list	*before_last_stack;
@@ -41,10 +41,10 @@ int	rrb(t_list **b_stack)
 	last_stack = ft_lstlast(*b_stack);
 	ft_lstadd_front(b_stack, last_stack);
 	before_last_stack->next = 0;
-	return (0);
+	return ("rrb");
 }
 
-int	rrr(t_list **a_stack, t_list **b_stack)
+char	*rrr(t_list **a_stack, t_list **b_stack)
 {
 	t_list	*last_stack;
 	t_list	*before_last_stack;
@@ -63,10 +63,10 @@ int	rrr(t_list **a_stack, t_list **b_stack)
 	last_stack = ft_lstlast(*b_stack);
 	ft_lstadd_front(b_stack, last_stack);
 	before_last_stack->next = 0;
-	return (0);
+	return ("rrr");
 }
 
-int	ra(t_list **a_stack)
+char	*ra(t_list **a_stack)
 {
 	t_list	*first_stack;
 	t_list	*second_stack;
@@ -78,10 +78,10 @@ int	ra(t_list **a_stack)
 	ft_lstadd_back(a_stack, first_stack);
 	first_stack->next = 0;
 	*a_stack = second_stack;
-	return (0);
+	return ("ra");
 }
 
-int	rb(t_list **b_stack)
+char	*rb(t_list **b_stack)
 {
 	t_list	*first_stack;
 	t_list	*second_stack;
@@ -93,5 +93,5 @@ int	rb(t_list **b_stack)
 	ft_lstadd_back(b_stack, first_stack);
 	first_stack->next = 0;
 	*b_stack = second_stack;
-	return (0);
+	return ("rb");
 }

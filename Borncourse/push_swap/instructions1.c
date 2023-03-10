@@ -6,13 +6,13 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 20:37:51 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/08 13:11:51 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/10 15:42:57 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	sa(t_list **a_stack)
+char	*sa(t_list **a_stack)
 {
 	int		*temp_num;
 	t_list	*next_stack;
@@ -23,10 +23,10 @@ int	sa(t_list **a_stack)
 	temp_num = next_stack->content;
 	next_stack->content = (*a_stack)->content;
 	(*a_stack)->content = temp_num;
-	return (0);
+	return ("sa");
 }
 
-int	sb(t_list **b_stack)
+char	*sb(t_list **b_stack)
 {
 	int		*temp_num;
 	t_list	*next_stack;
@@ -37,10 +37,10 @@ int	sb(t_list **b_stack)
 	temp_num = next_stack->content;
 	next_stack->content = (*b_stack)->content;
 	(*b_stack)->content = temp_num;
-	return (0);
+	return ("sb");
 }
 
-int	ss(t_list **a_stack, t_list **b_stack)
+char	*ss(t_list **a_stack, t_list **b_stack)
 {
 	int		*temp_num;
 	t_list	*next_stack;
@@ -55,10 +55,10 @@ int	ss(t_list **a_stack, t_list **b_stack)
 	temp_num = next_stack->content;
 	next_stack->content = (*b_stack)->content;
 	(*b_stack)->content = temp_num;
-	return (0);
+	return ("ss");
 }
 
-int	pa(t_list **a_stack, t_list **b_stack)
+char	*pa(t_list **a_stack, t_list **b_stack)
 {
 	t_list	*second_b_stack;
 
@@ -67,10 +67,10 @@ int	pa(t_list **a_stack, t_list **b_stack)
 	second_b_stack = (*b_stack)->next;
 	ft_lstadd_front(a_stack, *b_stack);
 	*b_stack = second_b_stack;
-	return (0);
+	return ("pa");
 }
 
-int	pb(t_list **a_stack, t_list **b_stack)
+char	*pb(t_list **a_stack, t_list **b_stack)
 {
 	t_list	*second_a_stack;
 
@@ -79,5 +79,5 @@ int	pb(t_list **a_stack, t_list **b_stack)
 	second_a_stack = (*a_stack)->next;
 	ft_lstadd_front(b_stack, *a_stack);
 	*a_stack = second_a_stack;
-	return (0);
+	return ("pb");
 }
