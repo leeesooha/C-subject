@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:25:58 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/10 16:08:34 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/10 21:02:51 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 //main-
 int		parsing(int argc, char **argv, int **num_array, t_list **a_stack);
-int		push_swap(t_list **a_stack, t_list **b_stack, t_list **cmd, int **arr);
+int		push_swap(t_list **a_stack, t_list **b_stack, t_list **cmd);
 int		print_cmd(t_list **cmd);
 
 //parsing
@@ -49,10 +49,10 @@ char	*rb(t_list **b_stack);
 //instructions3
 char	*rr(t_list **a_stack, t_list **b_stack);
 //hard_coding
-int		hard_coding(t_list **a_stack, t_list **cmd, int **arr);
+int		hard_coding(t_list **a_stack, t_list **cmd);
 int		free_content(void *content);
-int		two_case(t_list **a_stack, int *a, t_list **cmd);
-int		one_case(t_list **a_stack, int *a, t_list **cmd);
+int		hard_case(t_list **a_stack, int *a, t_list **cmd);
+
 //is_sort
 int		is_sort(t_list *stack);
 

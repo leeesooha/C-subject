@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:33:00 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/10 16:08:40 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/10 21:38:44 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ int	main(int argc, char **argv)
 	t_list		*b_stack;
 	t_list		*cmd;
 
-//	b_stack = 0;
+	b_stack = 0;
+	a_stack = 0;
 	parsing(argc, argv, &arr, &a_stack);
-	push_swap(&a_stack, &b_stack, &cmd, &arr);
+	push_swap(&a_stack, &b_stack, &cmd);
 	
 	int			*temp;
 	t_list		*free_temp;
@@ -81,3 +82,9 @@ int	main(int argc, char **argv)
 	system ("leaks push_swap");
 └-----------------스택 생성 테스트 코드---------------┘
 */
+
+//----조건----
+//3개	2 or 3개
+//5개	12개
+//100개 700개		700 900 1100 1300 1500
+//500개 5500개		5500 7000 8500 10000 11500
