@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 10:45:04 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/10 19:48:35 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/11 13:21:05 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ int	parsing(int argc, char **argv, int **num_array, t_list **a_stack)
 	free(str_oneline);
 	indexing(num_array, stack_len);
 	i = 0;
-//	printf("\ntwoadd : %p\n", a_stack);
-//	printf("\noneadd : %p\n", *a_stack);
 	while (i < stack_len)
 		ft_lstadd_back(a_stack, ft_lstnew((*num_array + i++)));
 	return (0);

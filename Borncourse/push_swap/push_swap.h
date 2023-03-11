@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:25:58 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/10 21:02:51 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/11 15:59:39 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,9 @@ int		is_sort(t_list *stack);
 
 //push_swap
 int		allpb_tpvt(t_list **a_stack, t_list **b_stack, t_list **cmd);
+//bps
+int		bps(t_list **a_stack, t_list **b_stack, t_list **cmd int pivot_one);
+//best_path
+int		one_path_cnt(t_list **a_stack, t_list **b_stack, int num);
 
 #endif
