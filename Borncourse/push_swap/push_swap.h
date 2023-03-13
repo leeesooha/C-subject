@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:25:58 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/11 15:59:39 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/13 21:23:44 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,18 @@ int		hard_case(t_list **a_stack, int *a, t_list **cmd);
 int		is_sort(t_list *stack);
 
 //push_swap
-int		allpb_tpvt(t_list **a_stack, t_list **b_stack, t_list **cmd);
+int		allpb(t_list **a_stack, t_list **b_stack, t_list **cmd);
 //bps
-int		bps(t_list **a_stack, t_list **b_stack, t_list **cmd int pivot_one);
+int		bps(t_list **a_stack, t_list **b_stack, /*t_list **cmd,*/ int pivot_one);
+int		greedy(t_list **a_stack, t_list **b_stack, /* t_list **cmd,*/ int pivot);
+int		best_pa(t_list **a_stack, t_list **b_stack, int pivot, int *best_case);
 //best_path
-int		one_path_cnt(t_list **a_stack, t_list **b_stack, int num);
+int		one_path_cnt(t_list **a_stack, t_list **b_stack, int num, int *best_case);
+int		ft_rarra_cnt(t_list **a_stack, int num, int *ra_cnt, int *rra_cnt);
+int		case_choice(int *ra_cnt, int *rra_cnt, int *rb_cnt, int *rrb_cnt);
+int		bpath(int *ra_cnt, int *rra_cnt, int *rb_cnt, int *rrb_cnt);
+//ft_rarra_cnt_utils
+int		sort_case(t_list **a_stack, int num, int *ra_cnt, int *rra_cnt);
+int		circule_sort_case(t_list **a_stack, int num, int *ra_cnt, int *rra_cnt);
 
 #endif
