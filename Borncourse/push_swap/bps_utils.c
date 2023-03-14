@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:56:58 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/14 11:08:02 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/14 18:08:46 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,12 @@
 int	greedy(t_list **a_stack, t_list **b_stack, t_list **cmd, int pivot)
 {
 	int	best_case[6];
-	printf("\n----------check-----------\n");
 	while (ft_lstsize(*b_stack) && *((int *)(*b_stack)->content) >= pivot)
 	{
 		best_case[0] = best_pa(a_stack, b_stack, pivot, best_case);	//pa할 최선의 원소 반환
-		printf("\n----------IN-----------\n");
 		pa_action(best_case, a_stack, b_stack, cmd);
 	//	원소찾아서 동작 수행. 0번 최적원소, 1번 케이스
 	}
-	printf("\n----------greedy-----------\n");
 	return (0);
 }
 
@@ -66,6 +63,30 @@ int	pa_action(int *best_case, t_list **a_stack, t_list **b_stack, t_list **cmd)
 	return (0);
 }
 
+int	final_ro_a(t_list **a_stack, t_list **cmd, int len)
+{
+	t_list	*temtack;
+	int		zero_index;
+
+	zero_index = 0;
+	temtack = *a_stack;
+	while (*((int *)temtack->content) != 0)
+	{
+		zero_index++;
+		temtack = temtack->next;
+	}
+	if (zero_index > len / 2)
+	{
+		while (*((int *)((*a_stack)->content)) != 0)
+			ft_lstadd_back(cmd, ft_lstnew(ft_strdup(rra(a_stack))));
+	}
+	else
+	{
+		while (*((int *)((*a_stack)->content)) != 0)
+			ft_lstadd_back(cmd, ft_lstnew(ft_strdup(ra(a_stack))));
+	}
+	return (0);
+}
 //plan
 /*
 최적값  (hash[값] : 명령어 수), preint에 key 저장

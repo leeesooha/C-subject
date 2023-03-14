@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:04:51 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/14 10:27:01 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/14 18:08:59 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int	allpb(t_list **a_stack, t_list **b_stack, t_list **cmd)
 	return (0);
 }
 
-
 int	bps(t_list **a_stack, t_list **b_stack, t_list **cmd, int stack_total_len)
 {
 	int	pivot_one;
@@ -60,7 +59,7 @@ int	bps(t_list **a_stack, t_list **b_stack, t_list **cmd, int stack_total_len)
 	greedy(a_stack, b_stack, cmd, pivot_two);
 	greedy(a_stack, b_stack, cmd, pivot_one);
 	greedy(a_stack, b_stack, cmd, 0);
-	printf("\n----------greedend-----------\n");
+	final_ro_a(a_stack, cmd, stack_total_len);
 	return (0);
 }
 

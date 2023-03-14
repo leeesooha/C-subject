@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 09:10:41 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/14 10:49:04 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/14 18:08:52 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,18 @@ int	pa_zero(int *best_case, t_list **a_stack, t_list **b_stack, t_list **cmd)
 	while (rb_cnt--)
 		ft_lstadd_back(cmd, ft_lstnew(ft_strdup(rb(b_stack))));
 	ft_lstadd_back(cmd, ft_lstnew(ft_strdup(pa(a_stack, b_stack))));
+/*
+	int *temp;
+	t_list *test;
+	test = *a_stack;
+	printf("a_stack : ");
+	while (test)
+	{
+		temp = (int *)test->content;
+		printf("%d ", *temp);
+		test = test->next;
+	}
+*/
 	return (0);
 }
 

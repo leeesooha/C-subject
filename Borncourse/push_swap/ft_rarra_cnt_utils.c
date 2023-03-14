@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 20:44:39 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/14 11:23:21 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/14 18:08:47 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,14 @@ int	circule_sort_case(t_list **a_stack, int num, int *ra_cnt, int *rra_cnt)
 	t_list	*temtack;
 
 	temtack = *a_stack;
+	if (temtack->next && *((int *)temtack->content) > num)
+	{
+		*ra_cnt = 0;
+		*rra_cnt = ft_lstsize(temtack) - *ra_cnt;
+		return (0);
+	}
 	(*(ra_cnt))++;
-	while (temtack->next || !(*((int *)temtack->content) > num
+	while (temtack->next && !(*((int *)temtack->content) > num
 			&& num < *((int *)(temtack->next)->content)))
 	{
 		(*(ra_cnt))++;
