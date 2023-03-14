@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 15:42:21 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/13 22:06:12 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/14 11:31:54 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ int	one_path_cnt(t_list **a_stack, t_list **b_stack, int num, int *best_case)
 	}
 	rrb_cnt = (ft_lstsize(*b_stack) - rb_cnt);
 	ft_rarra_cnt(a_stack, num, &ra_cnt, &rra_cnt);
+	printf("\n안영\n");
+	best_case[2] = ra_cnt;
+	best_case[3] = rb_cnt;
+	best_case[4] = rra_cnt;
+	best_case[5] = rrb_cnt;
 	best_case[1] = case_choice(&ra_cnt, &rra_cnt, &rb_cnt, &rrb_cnt);
 	return (bpath(&ra_cnt, &rra_cnt, &rb_cnt, &rrb_cnt));
 }
@@ -45,10 +50,15 @@ int	ft_rarra_cnt(t_list **a_stack, int num, int *ra_cnt, int *rra_cnt)
 		if (num > *(int *)temtack->content)	//pa할 값이 최상단인 케이스
 			return (0);
 		else
+		{
 			return (sort_case(a_stack, num, ra_cnt, rra_cnt));	//정렬된 케이스
+		}
 	}
 	else
+	{
+		printf("\n호호호\n");
 		return (circule_sort_case(a_stack, num, ra_cnt, rra_cnt));		//순환구조정렬상태
+	}
 	return (0);
 }
 

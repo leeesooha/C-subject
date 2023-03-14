@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:04:51 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/13 21:34:58 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/14 10:27:01 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	push_swap(t_list **a_stack, t_list **b_stack, t_list **cmd)
 	if (ft_lstsize(*a_stack) <= 3)
 		return (hard_coding(a_stack, cmd));
 	allpb(a_stack, b_stack, cmd);
-	bps(a_stack, b_stack, /*cmd,*/ (ft_lstsize(*a_stack) + ft_lstsize(*b_stack)));
+	bps(a_stack, b_stack, cmd, (ft_lstsize(*a_stack) + ft_lstsize(*b_stack)));
 	return (0);
 }
 
@@ -50,16 +50,17 @@ int	allpb(t_list **a_stack, t_list **b_stack, t_list **cmd)
 }
 
 
-int	bps(t_list **a_stack, t_list **b_stack, /* t_list **cmd,*/ int stack_total_len)
+int	bps(t_list **a_stack, t_list **b_stack, t_list **cmd, int stack_total_len)
 {
 	int	pivot_one;
 	int	pivot_two;
 
 	pivot_one = stack_total_len / 3;
 	pivot_two = pivot_one * 2;
-	greedy(a_stack, b_stack, /* cmd,*/ pivot_two);
-//	greedy(a_stack, b_stack, cmd, pivot_one);
-//	greedy(a_stack, b_stack, cmd, 0);
+	greedy(a_stack, b_stack, cmd, pivot_two);
+	greedy(a_stack, b_stack, cmd, pivot_one);
+	greedy(a_stack, b_stack, cmd, 0);
+	printf("\n----------greedend-----------\n");
 	return (0);
 }
 

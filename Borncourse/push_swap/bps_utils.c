@@ -6,25 +6,24 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:56:58 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/13 22:10:54 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/14 11:08:02 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	greedy(t_list **a_stack, t_list **b_stack, /* t_list **cmd,*/ int pivot)
+int	greedy(t_list **a_stack, t_list **b_stack, t_list **cmd, int pivot)
 {
-	int	best_case[2];
-
-	while ((*b_stack) && *((int *)(*b_stack)->content) >= pivot)
+	int	best_case[6];
+	printf("\n----------check-----------\n");
+	while (ft_lstsize(*b_stack) && *((int *)(*b_stack)->content) >= pivot)
 	{
 		best_case[0] = best_pa(a_stack, b_stack, pivot, best_case);	//pa할 최선의 원소 반환
-	//	pa_action(best_case, a_stack, b_stack, cmd);
-	//	원소찾아서 동작 수행.
-		printf("\nbest_num: %d\n", best_case[0]);
-		printf("\nbest_min: %d\n", best_case[1]);
-		return (0);
+		printf("\n----------IN-----------\n");
+		pa_action(best_case, a_stack, b_stack, cmd);
+	//	원소찾아서 동작 수행. 0번 최적원소, 1번 케이스
 	}
+	printf("\n----------greedy-----------\n");
 	return (0);
 }
 
@@ -38,7 +37,7 @@ int	best_pa(t_list **a_stack, t_list **b_stack, int pivot, int *best_case)
 	temtack = (*b_stack);
 	best_num = *((int *)temtack->content);
 	hash[best_num] = one_path_cnt(a_stack, b_stack, best_num, best_case);
-	while (*b_stack && *((int *)temtack->content) >= pivot)			//모든원소를 돌면서 최선 원소 찾음
+	while (*b_stack && (temtack) && *((int *)temtack->content) >= pivot)			//모든원소를 돌면서 최선 원소 찾음
 	{
 		cur_num = *((int *)temtack->content);
 		hash[cur_num] = one_path_cnt(a_stack, b_stack, cur_num, best_case);	//one_path경로개수 반환
@@ -53,13 +52,20 @@ int	best_pa(t_list **a_stack, t_list **b_stack, int pivot, int *best_case)
 	}
 	return (best_num);
 }
-/*
+
 int	pa_action(int *best_case, t_list **a_stack, t_list **b_stack, t_list **cmd)
 {
-	
+	if (best_case[1] == 0)
+		return (pa_zero(best_case, a_stack, b_stack, cmd));
+	else if (best_case[1] == 1)
+		return (pa_one(best_case, a_stack, b_stack, cmd));
+	else if (best_case[1] == 2)
+		return (pa_two(best_case, a_stack, b_stack, cmd));
+	else if (best_case[1] == 3)
+		return (pa_three(best_case, a_stack, b_stack, cmd));
 	return (0);
 }
-*/
+
 //plan
 /*
 최적값  (hash[값] : 명령어 수), preint에 key 저장
