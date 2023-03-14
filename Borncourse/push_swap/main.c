@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:33:00 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/14 18:08:51 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/14 19:09:11 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 	a_stack = 0;
 	parsing(argc, argv, &arr, &a_stack);
 	push_swap(&a_stack, &b_stack, &cmd);	
-/*	int			*temp;
+	int			*temp;
 	t_list		*free_temp;
 
 	printf("a_stack : ");
@@ -45,12 +45,12 @@ int	main(int argc, char **argv)
 		free(free_temp);
 	}
 	printf("\n");
-*/
+
 	free(arr);
-//	printf("\n---------\n");
+	printf("\n---------\n");
 	print_cmd(&cmd);
-//	printf("\n---------\n");
-//	system ("leaks push_swap");
+	printf("\n---------\n");
+	system ("leaks push_swap");
 	return (0);
 }
 

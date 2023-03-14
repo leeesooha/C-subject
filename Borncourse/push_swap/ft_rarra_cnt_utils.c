@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 20:44:39 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/14 18:08:47 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/14 20:02:45 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,25 @@ int	sort_case(t_list **a_stack, int num, int *ra_cnt, int *rra_cnt)
 int	circule_sort_case(t_list **a_stack, int num, int *ra_cnt, int *rra_cnt)
 {
 	t_list	*temtack;
+	int		inser_num;
 
 	temtack = *a_stack;
-	if (temtack->next && *((int *)temtack->content) > num)
+	(*(ra_cnt))++;
+	inser_num = *(is_sort(*a_stack));
+	if (num < inser_num)
 	{
-		*ra_cnt = 0;
-		*rra_cnt = ft_lstsize(temtack) - *ra_cnt;
+		while (temtack)
+		{
+			if (*((int *)temtack->content) == inser_num)
+				break ;
+			(*(ra_cnt))++;
+			temtack = temtack->next;
+		}
+		*rra_cnt = (ft_lstsize(*a_stack) - *ra_cnt);
 		return (0);
 	}
-	(*(ra_cnt))++;
-	while (temtack->next && !(*((int *)temtack->content) > num
-			&& num < *((int *)(temtack->next)->content)))
+	else
 	{
-		(*(ra_cnt))++;
-		temtack = temtack->next;
+		
 	}
-	*rra_cnt = (ft_lstsize(*a_stack) - *ra_cnt);
-	return (0);
 }

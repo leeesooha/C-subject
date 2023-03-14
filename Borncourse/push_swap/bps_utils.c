@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:56:58 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/14 18:08:46 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/14 18:57:26 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,25 @@
 int	greedy(t_list **a_stack, t_list **b_stack, t_list **cmd, int pivot)
 {
 	int	best_case[6];
-	while (ft_lstsize(*b_stack) && *((int *)(*b_stack)->content) >= pivot)
+	while (ft_lstsize(*b_stack) && find_pivot(b_stack, pivot))
 	{
 		best_case[0] = best_pa(a_stack, b_stack, pivot, best_case);	//pa할 최선의 원소 반환
 		pa_action(best_case, a_stack, b_stack, cmd);
 	//	원소찾아서 동작 수행. 0번 최적원소, 1번 케이스
+	}
+	return (0);
+}
+
+t_list	*find_pivot(t_list **b_stack, int pivot)
+{
+	t_list	*temtack;
+
+	temtack = *b_stack;
+	while (temtack)
+	{
+		if (*((int *)temtack->content) >= pivot)
+			return (temtack->content);
+		temtack = temtack->next;
 	}
 	return (0);
 }
@@ -32,19 +46,22 @@ int	best_pa(t_list **a_stack, t_list **b_stack, int pivot, int *best_case)
 	t_list	*temtack;
 
 	temtack = (*b_stack);
-	best_num = *((int *)temtack->content);
+	best_num = *((int *)find_pivot(b_stack, pivot));
 	hash[best_num] = one_path_cnt(a_stack, b_stack, best_num, best_case);
-	while (*b_stack && (temtack) && *((int *)temtack->content) >= pivot)			//모든원소를 돌면서 최선 원소 찾음
+	while (*b_stack && (temtack) && find_pivot(b_stack, pivot))			//모든원소를 돌면서 최선 원소 찾음
 	{
-		cur_num = *((int *)temtack->content);
-		hash[cur_num] = one_path_cnt(a_stack, b_stack, cur_num, best_case);	//one_path경로개수 반환
-		if (hash[best_num] == hash[cur_num] && best_num != cur_num)
+		if (*((int *)temtack->content) >= pivot)
 		{
-			if (best_num < cur_num)
+			cur_num = *((int *)temtack->content);
+			hash[cur_num] = one_path_cnt(a_stack, b_stack, cur_num, best_case);	//one_path경로개수 반환
+			if (hash[best_num] == hash[cur_num] && best_num != cur_num)
+			{
+				if (best_num < cur_num)
+					best_num = cur_num;
+			}
+			else if (hash[best_num] > hash[cur_num] && best_num != cur_num)
 				best_num = cur_num;
 		}
-		else if (hash[best_num] > hash[cur_num] && best_num != cur_num)
-			best_num = cur_num;
 		temtack = temtack->next;
 	}
 	return (best_num);

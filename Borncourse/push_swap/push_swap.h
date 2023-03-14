@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:25:58 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/14 18:08:55 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/14 19:34:53 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,14 @@ int		free_content(void *content);
 int		hard_case(t_list **a_stack, int *a, t_list **cmd);
 
 //is_sort
-int		is_sort(t_list *stack);
+int		*is_sort(t_list *stack);
 
 //push_swap
 int		allpb(t_list **a_stack, t_list **b_stack, t_list **cmd);
 //bps
 int		bps(t_list **a_stack, t_list **b_stack, t_list **cmd, int pivot_one);
 int		greedy(t_list **a_stack, t_list **b_stack,  t_list **cmd, int pivot);
+t_list	*find_pivot(t_list **b_stack, int pivot);
 int		best_pa(t_list **a_stack, t_list **b_stack, int pivot, int *best_case);
 int		pa_action(int *best_case, t_list **a_stack, t_list **b_stack, t_list **cmd);
 int		final_ro_a(t_list **a_stack, t_list **cmd, int len);

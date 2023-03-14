@@ -6,13 +6,13 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:46:10 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/14 18:08:50 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/14 19:50:32 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	is_sort(t_list *stack)
+int	*is_sort(t_list *stack)
 {
 	int		*previous_num;
 
@@ -25,7 +25,7 @@ int	is_sort(t_list *stack)
 		while ((stack))
 		{
 			if (*previous_num > *((int *)(stack->content)))
-				return (1);
+				return ((int *)(stack->content));
 			previous_num = stack->content;
 			stack = stack->next;
 		}
