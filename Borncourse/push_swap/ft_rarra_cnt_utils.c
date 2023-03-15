@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 20:44:39 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/15 13:26:52 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/15 19:22:27 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int	sort_case(t_list **a_stack, int num, int *ra_cnt, int *rra_cnt)
 	t_list	*temtack;
 
 	temtack = *a_stack;
-	(*(ra_cnt))++;
+	*ra_cnt = 1;
 	while (temtack->next && !(*((int *)temtack->content) < num
 			&& num < *((int *)(temtack->next)->content)))
 	{
-		(*(ra_cnt))++;
+		(*ra_cnt)++;
 		temtack = temtack->next;
 	}
 	*rra_cnt = (ft_lstsize(*a_stack) - *ra_cnt);
@@ -43,10 +43,10 @@ int	circule_sort_case(t_list **a_stack, int num, int *ra_cnt, int *rra_cnt)
 				return (0);
 			}
 			temtack = temtack->next;
-			*ra_cnt++;
+			(*ra_cnt)++;
 		}
 	}
-	circule_ra_find(a_stack, num, *ra_cnt, *rra_cnt);
+	circule_ra_find(a_stack, num, ra_cnt, rra_cnt);
 	return (0);
 }
 
@@ -69,7 +69,7 @@ int	circule_ra_find(t_list **a_stack, int num, int *ra_cnt, int *rra_cnt)
 	}
 	temtack = *a_stack;
 	index = 0;
-	while (temtack && *((int *)temtack->content) == max)
+	while (temtack && *((int *)temtack->content) != max)
 	{
 		index++;
 		temtack = temtack->next;
@@ -93,7 +93,7 @@ int	find_min(t_list **a_stack)
 	{
 		if (*((int *)temtack->content) < min && index != 0)
 			min = *((int *)temtack->content);
-		temtack->next;
+		temtack = temtack->next;
 		index++;
 	}
 	return (min);

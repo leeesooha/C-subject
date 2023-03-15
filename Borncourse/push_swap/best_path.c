@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 15:42:21 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/14 18:08:46 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/15 21:35:42 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,17 @@ int	one_path_cnt(t_list **a_stack, t_list **b_stack, int num, int *best_case)
 	int		rra_cnt;
 
 	rb_cnt = 0;
+	rrb_cnt = 0;
 	temtack = (*b_stack);
 	while (*(int *)temtack->content != num)
 	{
 		temtack = temtack->next;
 		rb_cnt++;
 	}
+//	if (rb_cnt != 0)
 	rrb_cnt = (ft_lstsize(*b_stack) - rb_cnt);
+	if (ft_lstsize(*b_stack) == 1)
+		rrb_cnt = 0;
 	ft_rarra_cnt(a_stack, num, &ra_cnt, &rra_cnt);
 	best_case[2] = ra_cnt;
 	best_case[3] = rb_cnt;
@@ -44,11 +48,18 @@ int	ft_rarra_cnt(t_list **a_stack, int num, int *ra_cnt, int *rra_cnt)
 	*ra_cnt = 0;
 	*rra_cnt = 0;
 	temtack = (*a_stack);
-
-	if (!(is_sort(temtack)))
+	if (!(is_sort(a_stack)))
 	{
 		if (num < *(int *)temtack->content)	//pa할 값이 최상단인 케이스
+		{
+			*rra_cnt = ft_lstsize(temtack);
 			return (0);
+		}
+		else if (num > *(int *)(ft_lstlast(temtack)->content))
+		{
+			*rra_cnt = ft_lstsize(temtack);
+			return (0);
+		}
 		else
 		{
 			return (sort_case(a_stack, num, ra_cnt, rra_cnt));	//정렬된 케이스
@@ -115,8 +126,6 @@ int	case_choice(int *ra_cnt, int *rra_cnt, int *rb_cnt, int *rrb_cnt)
 	}
 	return (best_min[1]);
 }
-
-
 
 //--------할일------------
 //세가지 케이스 제작해야함.

@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:39:34 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/15 13:26:54 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/15 18:54:25 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	hard_coding(t_list **a_stack, t_list **cmd)
 	t_list	*temp_stack;
 	int		i;
 
-	if (!is_sort(*a_stack))
+	if (!is_sort(a_stack))
 		return (0);
 	else if (ft_lstsize(*a_stack) == 2)
 	{

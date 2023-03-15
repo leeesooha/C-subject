@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:56:58 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/15 13:26:53 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/15 21:35:22 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	greedy(t_list **a_stack, t_list **b_stack, t_list **cmd, int pivot)
 {
-	int	best_case[6];
+	int	best_case[11];
 	while (ft_lstsize(*b_stack) && find_pivot(b_stack, pivot))
 	{
 		best_case[0] = best_pa(a_stack, b_stack, pivot, best_case);	//pa할 최선의 원소 반환
@@ -48,20 +48,33 @@ int	best_pa(t_list **a_stack, t_list **b_stack, int pivot, int *best_case)
 	temtack = (*b_stack);
 	best_num = *((int *)find_pivot(b_stack, pivot));
 	hash[best_num] = one_path_cnt(a_stack, b_stack, best_num, best_case);
+	best_case[6] = best_case[1];
+	best_case[7] = best_case[2];
+	best_case[8] = best_case[3];
+	best_case[9] = best_case[4];
+	best_case[10] = best_case[5];
 	while (*b_stack && (temtack))			//모든원소를 돌면서 최선 원소 찾음
 	{
-		if (*((int *)temtack->content) >= pivot)
+//		if (*((int *)temtack->content) >= pivot)
+//		{
+		cur_num = *((int *)temtack->content);
+		hash[cur_num] = one_path_cnt(a_stack, b_stack, cur_num, best_case);	//one_path경로개수 반환
+		//	if (hash[best_num] == hash[cur_num] && best_num != cur_num)
+		//	{
+		//		if (best_num < cur_num)
+		//			best_num = cur_num;
+		//	}
+		//	else 
+		if (hash[best_num] > hash[cur_num] && best_num != cur_num)
 		{
-			cur_num = *((int *)temtack->content);
-			hash[cur_num] = one_path_cnt(a_stack, b_stack, cur_num, best_case);	//one_path경로개수 반환
-			if (hash[best_num] == hash[cur_num] && best_num != cur_num)
-			{
-				if (best_num < cur_num)
-					best_num = cur_num;
-			}
-			else if (hash[best_num] > hash[cur_num] && best_num != cur_num)
-				best_num = cur_num;
+			best_case[6] = best_case[1];
+			best_case[7] = best_case[2];
+			best_case[8] = best_case[3];
+			best_case[9] = best_case[4];
+			best_case[10] = best_case[5];
+			best_num = cur_num;
 		}
+//		}
 		temtack = temtack->next;
 	}
 	return (best_num);
@@ -69,13 +82,15 @@ int	best_pa(t_list **a_stack, t_list **b_stack, int pivot, int *best_case)
 
 int	pa_action(int *best_case, t_list **a_stack, t_list **b_stack, t_list **cmd)
 {
-	if (best_case[1] == 0)
+	if (best_case[6] == 0)
+	{
 		return (pa_zero(best_case, a_stack, b_stack, cmd));
-	else if (best_case[1] == 1)
+	}
+	else if (best_case[6] == 1)
 		return (pa_one(best_case, a_stack, b_stack, cmd));
-	else if (best_case[1] == 2)
+	else if (best_case[6] == 2)
 		return (pa_two(best_case, a_stack, b_stack, cmd));
-	else if (best_case[1] == 3)
+	else if (best_case[6] == 3)
 		return (pa_three(best_case, a_stack, b_stack, cmd));
 	return (0);
 }

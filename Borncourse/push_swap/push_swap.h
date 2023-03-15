@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:25:58 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/15 13:26:58 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/15 18:50:41 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int		free_content(void *content);
 int		hard_case(t_list **a_stack, int *a, t_list **cmd);
 
 //is_sort
-int		*is_sort(t_list *stack);
+int		*is_sort(t_list **stack);
 
 //push_swap
 int		allpb(t_list **a_stack, t_list **b_stack, t_list **cmd);
@@ -73,6 +73,9 @@ int		bpath(int *ra_cnt, int *rra_cnt, int *rb_cnt, int *rrb_cnt);
 //ft_rarra_cnt_utils
 int		sort_case(t_list **a_stack, int num, int *ra_cnt, int *rra_cnt);
 int		circule_sort_case(t_list **a_stack, int num, int *ra_cnt, int *rra_cnt);
+int		circule_ra_find(t_list **a_stack, int num, int *ra_cnt, int *rra_cnt);
+int		find_min(t_list **a_stack);
+
 //pa_action_utils
 int		pa_zero(int *best_case, t_list **a_stack, t_list **b_stack, t_list **cmd);
 int		pa_one(int *best_case, t_list **a_stack, t_list **b_stack, t_list **cmd);

@@ -27,4 +27,13 @@ void main(void)
 
 구조체에 
 
+best_case
+0 해당원소
+1 케이스 (ra,rb 조합인지, rra,rrb인지 등등)
+2. ra_cnt
+3. rb_cnt
+4. rra_cnt
+5 rrb_cnt
+6 해당원소의 최적케이스
+
 //3푸시됬고 그리디 1회 작동 완료
