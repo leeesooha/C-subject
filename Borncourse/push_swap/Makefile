@@ -1,6 +1,6 @@
 SRCS =	push_swap.c parsing.c parsing_utils.c \
 		instructions1.c instructions2.c instructions3.c \
-		hard_coding.c is_sort.c print_cmd.c bps_utils.c \
+		hard_coding.c is_sort.c print_cmd.c greedy.c \
 		best_path.c ft_rarra_cnt_utils.c pa_action_utils.c
 
 CC = cc

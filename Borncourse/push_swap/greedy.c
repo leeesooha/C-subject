@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bps_utils.c                                        :+:      :+:    :+:   */
+/*   greedy.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:56:58 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/14 18:57:26 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/15 13:26:53 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	best_pa(t_list **a_stack, t_list **b_stack, int pivot, int *best_case)
 	temtack = (*b_stack);
 	best_num = *((int *)find_pivot(b_stack, pivot));
 	hash[best_num] = one_path_cnt(a_stack, b_stack, best_num, best_case);
-	while (*b_stack && (temtack) && find_pivot(b_stack, pivot))			//모든원소를 돌면서 최선 원소 찾음
+	while (*b_stack && (temtack))			//모든원소를 돌면서 최선 원소 찾음
 	{
 		if (*((int *)temtack->content) >= pivot)
 		{
