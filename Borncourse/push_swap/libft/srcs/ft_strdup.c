@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 20:21:56 by soohlee           #+#    #+#             */
-/*   Updated: 2023/02/08 21:50:21 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/16 18:26:28 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strdup(const char *s1)
 
 	str = (char *)malloc(ft_strlen(s1) + 1);
 	if (!str)
-		return (0);
+		exit (1);
 	i = 0;
 	while (s1[i])
 	{

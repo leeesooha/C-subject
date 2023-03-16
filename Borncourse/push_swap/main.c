@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:33:00 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/16 11:15:05 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/16 18:06:57 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main(int argc, char **argv)
 	a_stack = 0;
 	parsing(argc, argv, &arr, &a_stack);
 	push_swap(&a_stack, &b_stack, &cmd);
+	free(arr);
 	print_cmd(&cmd);
 	return (0);
 }
@@ -43,7 +44,6 @@ int	parsing(int argc, char **argv, int **num_array, t_list **a_stack)
 	i = 0;
 	while (i < stack_len)
 		ft_lstadd_back(a_stack, ft_lstnew((*num_array + i++)));
-	free(*num_array);
 	return (0);
 }
 
@@ -73,81 +73,3 @@ int	print_cmd(t_list **cmd)
 	ft_lstclear(cmd, (void *)free_content);
 	return (0);
 }
-
-/*
-int	main(int argc, char **argv)
-{
-	int			*arr;
-	t_list		*a_stack;
-	t_list		*b_stack;
-	t_list		*cmd;
-
-	b_stack = 0;
-	a_stack = 0;
-	parsing(argc, argv, &arr, &a_stack);
-	push_swap(&a_stack, &b_stack, &cmd);
-//	int			*temp;
-	t_list		*free_temp;
-
-	printf("a_stack : ");
-	while (a_stack)
-	{
-		free_temp = a_stack;
-		temp = (int *)a_stack->content;
-		printf("%d ", *temp);
-		a_stack = a_stack->next;
-		free(free_temp);
-	}
-	printf("\nb_stack : ");
-	while (b_stack)
-	{
-		free_temp = b_stack;
-		temp = (int *)b_stack->content;
-		printf("%d ", *temp);
-		b_stack = b_stack->next;
-		free(free_temp);
-	}
-//
-	free(arr);
-//	printf("\n------------------------------\n");
-	print_cmd(&cmd);
-//	printf("--------------------------------\n");
-//	system ("leaks push_swap");
-//	return (0);
-//}
-*/
-
-/*
-┌----------------스택 생성 테스트 코드----------------┐
-	int			*temp;
-	t_list		*free_temp;
-
-	printf("a_stack : ");
-	while (a_stack)
-	{
-		free_temp = a_stack;
-		temp = (int *)a_stack->content;
-		printf("%d ", *temp);
-		a_stack = a_stack->next;
-		free(free_temp);
-	}
-	printf("\nb_stack : ");
-	while (b_stack)
-	{
-		free_temp = b_stack;
-		temp = (int *)b_stack->content;
-		printf("%d ", *temp);
-		b_stack = b_stack->next;
-		free(free_temp);
-	}
-	printf("\n");
-	free(arr);
-	system ("leaks push_swap");
-└-----------------스택 생성 테스트 코드---------------┘
-*/
-
-//----조건----
-//3개	2 or 3개
-//5개	12개
-//100개 700개		700 900 1100 1300 1500
-//500개 5500개		5500 7000 8500 10000 11500

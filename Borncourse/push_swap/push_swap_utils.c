@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:04:51 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/16 11:14:58 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/16 17:56:41 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	hard_coding(t_list **a_stack, t_list **cmd)
 		i = 0;
 		while (temp_stack)
 		{
-			a[i++] = *((int *)temp_stack->content);
+			a[i++] = *((int *)(temp_stack->content));
 			temp_stack = temp_stack->next;
 		}
 		hard_case(a_stack, a, cmd);
@@ -53,8 +53,7 @@ int	allpb(t_list **a_stack, t_list **b_stack, t_list **cmd)
 		if (*((int *)((*a_stack)->content)) < pivot_two)
 		{	
 			ft_lstadd_back(cmd, ft_lstnew(ft_strdup(pb(a_stack, b_stack))));
-			if (*((int *)((*b_stack)->content)) < pivot_one
-				&& (*b_stack)->next)
+			if (*((int *)((*b_stack)->content)) < pivot_one && (*b_stack)->next)
 				ft_lstadd_back(cmd, ft_lstnew(ft_strdup(rb(b_stack))));
 		}
 		else
@@ -77,10 +76,11 @@ int	allpa(t_list **a_stack, t_list **b_stack, t_list **cmd, int total_len)
 int	greedy(t_list **a_stack, t_list **b_stack, t_list **cmd)
 {
 	int	best_case[11];
+	int	hash[100000];
 
 	while (ft_lstsize(*b_stack))
 	{
-		best_case[0] = select_b(a_stack, b_stack, best_case);
+		best_case[0] = select_b(a_stack, b_stack, best_case, hash);
 		move_pa(best_case, a_stack, b_stack, cmd);
 	}
 	return (0);
