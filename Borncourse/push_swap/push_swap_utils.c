@@ -1,37 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:04:51 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/15 21:35:11 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/16 11:14:58 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	push_swap(t_list **a_stack, t_list **b_stack, t_list **cmd)
+int	hard_coding(t_list **a_stack, t_list **cmd)
 {
-	if (ft_lstsize(*a_stack) <= 3)
-		return (hard_coding(a_stack, cmd));
-	allpb(a_stack, b_stack, cmd);
-	bps(a_stack, b_stack, cmd, (ft_lstsize(*a_stack) + ft_lstsize(*b_stack)));
-	return (0);
-}
+	int		a[3];
+	t_list	*temp_stack;
+	int		i;
 
-int	bps(t_list **a_stack, t_list **b_stack, t_list **cmd, int stack_total_len)
-{
-	int	pivot_one;
-	int	pivot_two;
-
-	pivot_one = stack_total_len / 3;
-	pivot_two = pivot_one * 2;
-//	greedy(a_stack, b_stack, cmd, pivot_two);
-//	greedy(a_stack, b_stack, cmd, pivot_one);
-	greedy(a_stack, b_stack, cmd, 0);
-	final_ro_a(a_stack, cmd, stack_total_len);
+	if (!is_sort(a_stack))
+		return (0);
+	else if (ft_lstsize(*a_stack) == 2)
+	{
+		ft_lstadd_back(cmd, ft_lstnew(ft_strdup(sa(a_stack))));
+		return (0);
+	}
+	else if (ft_lstsize(*a_stack) == 3)
+	{
+		temp_stack = *a_stack;
+		i = 0;
+		while (temp_stack)
+		{
+			a[i++] = *((int *)temp_stack->content);
+			temp_stack = temp_stack->next;
+		}
+		hard_case(a_stack, a, cmd);
+	}
 	return (0);
 }
 
@@ -63,20 +67,21 @@ int	allpb(t_list **a_stack, t_list **b_stack, t_list **cmd)
 	return (0);
 }
 
-
-
-
-/*
-BPS
+int	allpa(t_list **a_stack, t_list **b_stack, t_list **cmd, int total_len)
 {
-	while (pivot2끝날때까지)
-	그리디(최단경로 원소 pa수행후 cmd스택쌓기)
-	while (pivot1< 원소들 >pivot2끝날때까지)
-	그리디(최단경로 원소 pa수행후 cmd스택쌓기)
-	while (원소빌때까지)
-	그리디(최단경로 원소 pa수행후 cmd스택쌓기)
+	greedy(a_stack, b_stack, cmd);
+	zero_to_top(a_stack, cmd, total_len);
+	return (0);
 }
-*/
-// 1 4 0 3 2			a: -	b: 3 4 2 1 0
-//						a: 3	b: 4 2 1 0
-// 0 1 2 3 4
+
+int	greedy(t_list **a_stack, t_list **b_stack, t_list **cmd)
+{
+	int	best_case[11];
+
+	while (ft_lstsize(*b_stack))
+	{
+		best_case[0] = select_b(a_stack, b_stack, best_case);
+		move_pa(best_case, a_stack, b_stack, cmd);
+	}
+	return (0);
+}

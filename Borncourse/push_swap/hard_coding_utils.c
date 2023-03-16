@@ -1,43 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hard_coding.c                                      :+:      :+:    :+:   */
+/*   hard_coding_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:39:34 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/15 18:54:25 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/16 10:50:03 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	hard_coding(t_list **a_stack, t_list **cmd)
-{
-	int		a[3];
-	t_list	*temp_stack;
-	int		i;
-
-	if (!is_sort(a_stack))
-		return (0);
-	else if (ft_lstsize(*a_stack) == 2)
-	{
-		ft_lstadd_back(cmd, ft_lstnew(ft_strdup(sa(a_stack))));
-		return (0);
-	}
-	else if (ft_lstsize(*a_stack) == 3)
-	{
-		temp_stack = *a_stack;
-		i = 0;
-		while (temp_stack)
-		{
-			a[i++] = *((int *)temp_stack->content);
-			temp_stack = temp_stack->next;
-		}
-		hard_case(a_stack, a, cmd);
-	}
-	return (0);
-}
 
 int	hard_case(t_list **a_stack, int *a, t_list **cmd)
 {

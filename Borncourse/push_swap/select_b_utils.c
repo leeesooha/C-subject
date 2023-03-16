@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   best_path.c                                        :+:      :+:    :+:   */
+/*   select_b_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 15:42:21 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/15 21:35:42 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/16 11:38:35 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	one_path_cnt(t_list **a_stack, t_list **b_stack, int num, int *best_case)
+int	path_cnt(t_list **a_stack, t_list **b_stack, int num, int *best_case)
 {
 	t_list	*temtack;
 	int		rb_cnt;
@@ -28,11 +28,10 @@ int	one_path_cnt(t_list **a_stack, t_list **b_stack, int num, int *best_case)
 		temtack = temtack->next;
 		rb_cnt++;
 	}
-//	if (rb_cnt != 0)
 	rrb_cnt = (ft_lstsize(*b_stack) - rb_cnt);
 	if (ft_lstsize(*b_stack) == 1)
 		rrb_cnt = 0;
-	ft_rarra_cnt(a_stack, num, &ra_cnt, &rra_cnt);
+	rarra_cnt(a_stack, num, &ra_cnt, &rra_cnt);
 	best_case[2] = ra_cnt;
 	best_case[3] = rb_cnt;
 	best_case[4] = rra_cnt;
@@ -41,7 +40,7 @@ int	one_path_cnt(t_list **a_stack, t_list **b_stack, int num, int *best_case)
 	return (bpath(&ra_cnt, &rra_cnt, &rb_cnt, &rrb_cnt));
 }
 
-int	ft_rarra_cnt(t_list **a_stack, int num, int *ra_cnt, int *rra_cnt)
+int	rarra_cnt(t_list **a_stack, int num, int *ra_cnt, int *rra_cnt)
 {
 	t_list	*temtack;
 
@@ -50,7 +49,7 @@ int	ft_rarra_cnt(t_list **a_stack, int num, int *ra_cnt, int *rra_cnt)
 	temtack = (*a_stack);
 	if (!(is_sort(a_stack)))
 	{
-		if (num < *(int *)temtack->content)	//pa할 값이 최상단인 케이스
+		if (num < *(int *)temtack->content)
 		{
 			*rra_cnt = ft_lstsize(temtack);
 			return (0);
@@ -61,14 +60,10 @@ int	ft_rarra_cnt(t_list **a_stack, int num, int *ra_cnt, int *rra_cnt)
 			return (0);
 		}
 		else
-		{
-			return (sort_case(a_stack, num, ra_cnt, rra_cnt));	//정렬된 케이스
-		}
+			return (sort_case(a_stack, num, ra_cnt, rra_cnt));
 	}
 	else
-	{
-		return (circule_sort_case(a_stack, num, ra_cnt, rra_cnt));		//순환구조정렬상태
-	}
+		return (circule_sort_case(a_stack, num, ra_cnt, rra_cnt));
 	return (0);
 }
 
@@ -125,6 +120,20 @@ int	case_choice(int *ra_cnt, int *rra_cnt, int *rb_cnt, int *rrb_cnt)
 		}
 	}
 	return (best_min[1]);
+}
+
+t_list	*find_pivot(t_list **b_stack)
+{
+	t_list	*temtack;
+
+	temtack = *b_stack;
+	while (temtack)
+	{
+		if (*((int *)temtack->content))
+			return (temtack->content);
+		temtack = temtack->next;
+	}
+	return (0);
 }
 
 //--------할일------------

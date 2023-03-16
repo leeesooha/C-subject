@@ -1,7 +1,7 @@
-SRCS =	push_swap.c parsing.c parsing_utils.c \
-		instructions1.c instructions2.c instructions3.c \
-		hard_coding.c is_sort.c print_cmd.c greedy.c \
-		best_path.c ft_rarra_cnt_utils.c pa_action_utils.c
+SRCS =	main.c instructions1.c instructions2.c instructions3.c greedy_utils.c \
+		hard_coding_utils.c parsing_utils1.c parsing_utils2.c print_cmd_utils.c \
+		push_swap_utils.c rarra_cnt_utils.c select_b_utils.c rarra_cnt_utils.c \
+		select_b_utils.c move_pa_utils.c
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
@@ -16,7 +16,7 @@ NAME = push_swap
 all : $(NAME)
 
 $(NAME) : $(ARNAME)
-	$(CC) $(CFLAGS) -o $@ $^ main.c -g3
+	$(CC) $(CFLAGS) -o $@ $^ -g3
 
 %.o : %.c
 	cd $(LIB_DIR) ; make all

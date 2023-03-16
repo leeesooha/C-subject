@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_utils.c                                    :+:      :+:    :+:   */
+/*   parsing_utils2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:37:14 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/15 13:27:01 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/16 11:09:37 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,27 @@ void	indexing(int **num_array, long long len)
 		}
 	}
 	free(temp_arr);
+}
+
+int	*is_sort(t_list **stack)
+{
+	int		*previous_num;
+	t_list	*temtack;
+
+	temtack = *stack;
+	if (ft_lstsize(temtack) == 0 || ft_lstsize(temtack) == 1)
+		return (0);
+	else
+	{
+		previous_num = (temtack)->content;
+		temtack = temtack->next;
+		while ((temtack))
+		{
+			if (*previous_num > *((int *)(temtack->content)))
+				return ((int *)(temtack->content));
+			previous_num = temtack->content;
+			temtack = temtack->next;
+		}
+	}
+	return (0);
 }

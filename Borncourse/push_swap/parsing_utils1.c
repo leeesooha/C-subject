@@ -1,35 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parsing_utils1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 10:45:04 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/15 13:27:00 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/16 11:12:09 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	parsing(int argc, char **argv, int **num_array, t_list **a_stack)
-{
-	char		*str_oneline;
-	long long	stack_len;
-	long long	i;
-
-	str_oneline = ft_strdup("");
-	if (argc < 2 || !str_oneline)
-		exit(1);
-	argv_merge(argv, &str_oneline);
-	stack_len = make_num_array(ft_split(str_oneline, ' '), num_array);
-	free(str_oneline);
-	indexing(num_array, stack_len);
-	i = 0;
-	while (i < stack_len)
-		ft_lstadd_back(a_stack, ft_lstnew((*num_array + i++)));
-	return (0);
-}
 
 int	argv_merge(char **argv, char **str_oneline)
 {
@@ -54,7 +35,7 @@ int	argv_merge(char **argv, char **str_oneline)
 	return (0);
 }
 
-long	make_num_array(char **str_double, int **num_array)
+long	make_array(char **str_double, int **num_array)
 {
 	long long	i;
 	long long	j;
