@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 15:42:21 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/16 11:38:35 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/17 11:18:59 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,8 @@ int	rarra_cnt(t_list **a_stack, int num, int *ra_cnt, int *rra_cnt)
 	temtack = (*a_stack);
 	if (!(is_sort(a_stack)))
 	{
-		if (num < *(int *)temtack->content)
-		{
-			*rra_cnt = ft_lstsize(temtack);
-			return (0);
-		}
-		else if (num > *(int *)(ft_lstlast(temtack)->content))
+		if (num < *(int *)temtack->content
+			&& num > *(int *)(ft_lstlast(temtack)->content))
 		{
 			*rra_cnt = ft_lstsize(temtack);
 			return (0);
@@ -135,21 +131,3 @@ t_list	*find_pivot(t_list **b_stack)
 	}
 	return (0);
 }
-
-//--------할일------------
-//세가지 케이스 제작해야함.
-
-//다하면 최선원소 받은걸로 정렬.
-/*
-	if (rbrrb_cnt > 0 && rarra_cnt > 0 && rbrrb_cnt >= rarra_cnt)
-		best_path = rbrrb_cnt;
-	else if (rbrrb_cnt > 0 && rarra_cnt > 0 && rbrrb_cnt < rarra_cnt)
-		best_path = rarra_cnt;
-	else if (rbrrb_cnt < 0 && rarra_cnt < 0 && rbrrb_cnt <= rarra_cnt)
-		return (rbrrb_cnt * 1);
-	else if (rbrrb_cnt < 0 && rarra_cnt < 0 && rbrrb_cnt > rarra_cnt)
-		return (rarra_cnt * 1);
-	if (rbrrb_cnt < 0)
-		return ((rbrrb_cnt * 1) + rarra_cnt);
-	return ((rarra_cnt * 1) + rbrrb_cnt);
-*/

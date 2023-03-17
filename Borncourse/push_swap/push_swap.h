@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:25:58 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/16 18:40:50 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/17 11:19:16 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int		parsing(int argc, char **argv, int **num_array, t_list **a_stack);
 int		push_swap(t_list **a_stack, t_list **b_stack, t_list **cmd);
 int		print_cmd(t_list **cmd);
 
-//-------------parsing-----------
 //parsing_utils1
 int		argv_merge(char **argv, char **str_oneline);
 long	make_array(char **str_double, int **num_array);
@@ -34,7 +33,6 @@ int		free_double_pointer(char **s);
 void	indexing(int **num_array, long long len);
 int		*is_sort(t_list **stack);
 
-//-------------push_swap-----------
 //push_swap_utils
 int		hard_coding(t_list **a_stack, t_list **cmd);
 int		allpb(t_list **a_stack, t_list **b_stack, t_list **cmd);
@@ -63,11 +61,9 @@ int		circule_sort_case(t_list **a_stack, int num, int *ra_cnt, int *rra_cnt);
 int		circule_ra_find(t_list **a_stack, int num, int *ra_cnt, int *rra_cnt);
 int		find_min(t_list **a_stack);
 
-//-------------print_cmd-----------
 //print_cmd_utils
 int		free_content(void *content);
 
-//----------------instruction----------------
 //instructions1
 char	*sa(t_list **a_stack);
 char	*sb(t_list **b_stack);

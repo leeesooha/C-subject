@@ -16,11 +16,11 @@ NAME = push_swap
 all : $(NAME)
 
 $(NAME) : $(ARNAME)
-	$(CC) $(CFLAGS) -o $@ $^ -g3
+	$(CC) $(CFLAGS) -o $@ $^
 
 %.o : %.c
 	cd $(LIB_DIR) ; make all
-	$(CC) $(CFLAGS) -c $^ -o $@ -g3
+	$(CC) $(CFLAGS) -c $^ -o $@
 
 $(ARNAME) : $(OBJS)
 	$(AR) $(ARFLAGS) $@ $^ $(LIB_SRCS)/*.o
