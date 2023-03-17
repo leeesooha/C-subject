@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:46:27 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/07 19:57:48 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/17 20:07:59 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static unsigned long long	atoi_check_no_overflow(const char *str, int flag)
 		if (((res > 2147483647) && (flag == 1))
 			|| ((res > 2147483648) && (flag == -1)))
 		{
-			write(1, "Error\n", 6);
+			write(2, "Error\n", 6);
 			exit(1);
 		}
 		i++;

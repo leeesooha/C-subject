@@ -24,7 +24,7 @@ ARFLAGS = rc
 all : $(NAME)
 
 %.o : %.c
-		$(CC) $(CFLAGS) -c -o $@ $< -I $(HEADER)
+	$(CC) $(CFLAGS) -c -o $@ $< -I $(HEADER)
 
 $(NAME) : $(OBJS)
 	$(AR) $(ARFLAGS) $@ $^

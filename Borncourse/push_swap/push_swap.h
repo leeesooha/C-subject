@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:25:58 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/17 11:19:16 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/17 20:03:42 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int		find_min(t_list **a_stack);
 
 //print_cmd_utils
 int		free_content(void *content);
+int		do_not(void *content);
 
 //instructions1
 char	*sa(t_list **a_stack);

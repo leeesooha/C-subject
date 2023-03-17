@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:33:00 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/16 18:06:57 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/17 20:10:40 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int	parsing(int argc, char **argv, int **num_array, t_list **a_stack)
 
 int	push_swap(t_list **a_stack, t_list **b_stack, t_list **cmd)
 {
+	if (!is_sort(a_stack))
+		exit (1);
 	if (ft_lstsize(*a_stack) <= 3)
 		return (hard_coding(a_stack, cmd));
 	allpb(a_stack, b_stack, cmd);

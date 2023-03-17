@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:04:51 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/16 17:56:41 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/17 20:00:06 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int	allpa(t_list **a_stack, t_list **b_stack, t_list **cmd, int total_len)
 {
 	greedy(a_stack, b_stack, cmd);
 	zero_to_top(a_stack, cmd, total_len);
+	ft_lstclear(a_stack, (void *)do_not);
 	return (0);
 }
 

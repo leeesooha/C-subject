@@ -19,10 +19,10 @@ $(NAME) : $(ARNAME)
 	$(CC) $(CFLAGS) -o $@ $^
 
 %.o : %.c
-	cd $(LIB_DIR) ; make all
 	$(CC) $(CFLAGS) -c $^ -o $@
 
 $(ARNAME) : $(OBJS)
+	cd $(LIB_DIR) ; make all
 	$(AR) $(ARFLAGS) $@ $^ $(LIB_SRCS)/*.o
 
 clean :
