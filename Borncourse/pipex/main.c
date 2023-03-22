@@ -6,19 +6,29 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 10:37:36 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/21 14:39:31 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/22 22:44:18 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "pipex.h"
 
 int main(int argc, char **argv, char **envp)
 {
-	int i;
-
-	i = 0;
-	while (envp[i])
-		printf("%s\n", envp[i++]);
+	int	infile;
+	
+	infile = open(argv[1], O_RDONLY);
+	if (infile < 0)
+	{
+		ft_printf("%s", argv[1]);
+		ft_printf("zsh: %s ", strerror(errno));
+	}
+	if (access(argv[1], X_OK) == -1)
+	{
+		ft_printf("%s", strerror(errno));
+		ft_printf("%s", argv[1]);
+	}
+	if (argc && envp)
+		return (0);
 	return (0);
 }
 
