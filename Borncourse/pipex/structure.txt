@@ -1,0 +1,37 @@
+main(argc, argv, envp)
+{
+	**********parsing**************** 
+	infile cmd cmd cmd cmd ... outfile
+	순서
+	1. infile 존재여부 확인(에러처리) 및 읽기권한여부 확인(에러처리)
+		파일없음 : "zsh: no such file or directory: filename"
+		읽기권한없음 : "zsh: permission denied: filename"
+		//아마 perror("zsh");입력하면 나머지 출력에러 문자열을 자동으로 같게 될듯싶다.
+
+	1-1. here_doc case
+	-두번째 인자가 here_doc이라면 here_doc태그가 나올때까지 개행으로 구분된
+		데이터를 표준입력으로 받음.
+	-cmd가 있는지 확인, 순서대로 확인하다 없으면 바로 에러처리
+
+	1-2. other case
+	-cmd가 있는지 확인, 순서대로 확인하다 없으면 바로 에러처리
+		cmd없음 : "zsh: command not found: invalid_cmdname"
+	-outfile 없으면 생성후 출력스트림 outfile로 변경
+
+
+	********fork*******************//pipe는 fork에 의해 복사되지 않는다.
+	
+		cmd 개수만큼 반복문으로 fork생성
+		{
+			execve(경로가포함된cmd파일, 실행파일에 쓸 인자, envp);
+		}
+
+
+
+
+		표준출력(1)을 파일의 디스크립터로 바꿈	//dup2 
+		파일을 읽어 데이터를 cmd적용	//execve(경로가 포함된 cmd파일), 실행파일인자(파일내용), 환경변수경로(main에서 자동으로 받아옴))
+		execve가 실행되면 그 프로세스는 종료된다. cmd하나당 프로세스 하나를 만들어야하는듯
+	
+
+}
