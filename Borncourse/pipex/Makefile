@@ -1,4 +1,4 @@
-SRCS = main.c
+SRCS = main.c argscheck.c free.c
 
 NAME = pipex
 ARNAME = ./libft/libft.a

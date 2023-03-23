@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 10:57:09 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/22 22:29:43 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/23 18:51:10 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,35 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include "./libft/includes/libft.h"
-
 //지우고 제출
 # include <stdio.h>
+
+typedef struct s_data
+{
+	int		argc;
+	char	**argv;
+	char	**envp;
+	char	**envppath;
+	int		infilefd;
+	int		outfilefd;
+	int		**pipe;
+	char	**cmd;
+	int		pipenum;
+	int		pipecnt;
+}			t_data;
+
+int	main(int argc, char **argv, char **envp);
+
+/*
+argument check
+*/
+int	argscheck(t_data *args);
+int	filecheck(t_data *args);
+
+/*
+free
+*/
+int	double_free(char **arg);
 
 #endif
 //$@: 현재 Target 이름
