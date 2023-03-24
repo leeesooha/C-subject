@@ -6,61 +6,61 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 10:37:36 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/23 18:45:52 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/24 21:00:25 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	creat_pipe(t_data *args, int argc)
+int	creat_pipe(t_data *args)
 {
 	int	i;
 
-	args->argc = argc;
-	args->pipecnt = args->argc - 2;
-	i = 0;
-	args->pipe = (int **)ft_calloc(sizeof(int *), (args->pipecnt + 1));
-	if (!args->pipe)
-		exit (1);
-	while (args->argc - 2 > i)
-	{
-		(args->pipe)[i] = ft_calloc(sizeof(int), 2);
-		if (!(args->pipe)[i])
-			all_free(args, 1);
-		if (pipe(args->pipe[i]) == -1)
-			all_free(args, 1);
-		i++;
-	}
-	return (0);
-}
-
-int	creat_cmd(t_data *args, char **argv)
-{
-	int		i;
-	char	*temp;
-
-	args->argv = argv;
-	i = 0;
-	args->cmd = ft_split(args->argv[2], "|");
-	if (!args->cmd)
+	args->pipe_total = args->cmd_total + 1;
+	args->pipefd = (int **)ft_calloc(sizeof(int *), (args->pipe_total + 1));
+	if (!args->pipefd)
 		all_free(args, 2);
-	while (args->cmd[i])
+	i = 0;
+	while (args->pipe_total > i)
 	{
-		temp = args->cmd[i];
-		args->cmd[i] = ft_strtrim(args->cmd[i], " ");
-		if (!args->cmd[i])
-			all_free(args, 2);
-		free(temp);
+		(args->pipefd)[i] = (int *)ft_calloc(sizeof(int), 2);
+		if (!(args->pipefd)[i])
+			all_free(args, 3);
+		if (pipe(args->pipefd[i]) == -1)
+			all_free(args, 3);
 		i++;
 	}
 	return (0);
 }
 
-int	creat_envp(t_data *args, char **envp)
+int	creat_cmd(t_data *args)
 {
 	int		i;
-	char	*temp;
 
+	args->cmd_total = args->argc - 3;
+	args->cmd = (char **)ft_calloc(sizeof(char *), (args->cmd_total) * 2);
+	if (!args->cmd)
+		all_free(args, 1);
+	i = 0;
+	while (args->cmd_total > i)
+	{
+		args->cmd[i * 2] = ft_strdup(args->argv[i + 2]);
+		if (!args->cmd[i * 2])
+			all_free(args, 2);
+		i++;
+	}
+	args->full_namecmd = (char **)ft_calloc(sizeof(char *), (args->cmd_total) + 1);
+	if (!args->full_namecmd)
+		all_free(args, 2);
+	return (0);	
+}
+
+int	creat_envp(t_data *args, int argc, char **argv, char **envp)
+{
+	int		i;
+
+	args->argc = argc;
+	args->argv = argv;
 	args->envp = envp;
 	i = 0;
 	while (args->envp[i])
@@ -69,11 +69,9 @@ int	creat_envp(t_data *args, char **envp)
 			break ;
 		i++;
 	}
-	if (args->envp[i] == 0)
-		all_free(args, 2);
-	args->envppath = ft_split(args->envp[i] + 5, ":");
-	if (!args->envppath)
-		all_free(args, 2);
+	args->envpaths = ft_split(&(args->envp[i][5]), ':');
+	if (!args->envpaths)
+		all_free(args, 1);
 	return (0);
 }
 
@@ -82,34 +80,16 @@ int	main(int argc, char **argv, char **envp)
 	t_data	args;
 	int		i;
 
+	creat_envp(&args, argc, argv, envp);
+	creat_cmd(&args);
+	creat_pipe(&args);
 	i = 0;
-	creat_pipe(&args, argc);
-	creat_cmd(&args, argv);
-	creat_envp(&args, envp);
-	while (args.pipecnt > i)
+	while (args.pipe_total > i)
 	{
 		args.pipenum = i;
-		child(&args);
+		child(&args, 0);
 		i++;
 	}
+	waitpid(-1, 0, 0);
 	return (0);
 }
-
-/*
-#include "pipex.h"
-
-int	main(int argc, char **argv)
-{
-	ft_printf("%s", argv[1]);
-	if (argc < 3)
-	{
-		ft_printf("one");
-		return (0);
-	}
-	else
-		ft_printf("over_one");
-	if (argv)
-		return (0);
-	return (0);
-}
-*/

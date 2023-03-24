@@ -6,64 +6,77 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:53:02 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/23 18:50:55 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/24 21:33:11 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	child(t_data *args)
+int	child(t_data *args, int pid)
 {
-	int	pid;
-
 	pid = fork();
+
 	if (pid == 0)
 	{
 		if (args->pipenum == 0)
 		{
-			get_infile((args->argv)[1], &args);
-			cmd_excute(&args);
+			infile_to_pipe(args, args->argv[1]);
+			cmd_check(args, args->cmd[args->pipenum]);
+			execve(args->full_namecmd[args->pipenum], &(args->cmd[args->pipenum * 2]), args->envp);
+		}
+		else if (args->pipenum < args->pipe_total - 1)
+		{
+			redirection(args, args->pipenum, args->pipenum + 1);
+			cmd_check(args, args->cmd[args->pipenum]);
+			execve(args->full_namecmd[args->pipenum], &(args->cmd[args->pipenum * 2]), args->envp);
+		}
+		else 
+		{
+			pipe_to_outfile(args, (args->argv)[args->argc - 1]);
+			cmd_check(args, args->cmd[args->pipenum]);
+			execve(args->full_namecmd[args->pipenum], &(args->cmd[args->pipenum * 2]), args->envp);
 		}
 	}
-//	else
 	return (0);
 }
 
-int	cmd_excute(t_data *args)
+int	pipe_to_outfile(t_data *args, char *filename)
 {
-	int	i;
-
-	i = 0;
-	while (args->envppath[i])
-	{
-		ft_strjoin(args->envppath[i], args->cmd);
-		i++;
-	}
+	if (access(filename, W_OK) == -1)
+		all_free(args, 4);
+	args->outfilefd = open(filename, O_CREAT | O_RDWR | O_TRUNC, 0000644);
+	if (args->outfilefd < 0)
+		all_free(args, 4);
+	dup2(args->outfilefd, 1);
+	dup2(args->pipefd[args->pipenum][0], 0);
+	close_child_pipe(args);
 	return (0);
 }
 
-int	get_infile(char *filename, t_data *args)
+int	redirection(t_data *args, int current, int next)
 {
-	char	*buff;
+	dup2(args->pipefd[current - 1][0], 0);
+	dup2(args->pipefd[next - 1][1], 1);
+//	close_child_pipe(args);
+	return (0);
+}
+
+int	infile_to_pipe(t_data *args, char *filename)
+{
 	int		unusedfd;
 
 	if (access(filename, R_OK) == -1)
-		all_free(args, 3);
+		all_free(args, 4);
 	args->infilefd = open(filename, O_RDONLY);
-	if (!args->infilefd)
-		all_free(args, 3);
-	unusedfd = dup2((args->pipe)[0][1], 1);
+	if (args->infilefd < 0)
+		all_free(args, 4);
+	unusedfd = dup2(args->infilefd, 0);
 	if (unusedfd == -1)
-		all_free(args, 3);
-	unusedfd = dup2(args->pipe[0][0], 0);
+		all_free(args, 4);
+	unusedfd = dup2(args->pipefd[0][1], 1);
 	if (unusedfd == -1)
-		all_free(args, 3);
-	while (buff)
-	{
-		buff = get_next_line(args->infilefd);
-		ft_putstr_fd(buff, 1);
-	}
-	close(args->pipe[0][0]);
-	close(args->pipe[0][1]);
+		all_free(args, 4);
+//	close_child_pipe(args);
+	close(args->pipefd[0][1]);
 	return (0);
 }
