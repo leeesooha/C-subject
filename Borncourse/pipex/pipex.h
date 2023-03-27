@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 10:57:09 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/27 14:10:37 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/28 00:59:50 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ child
 int	child(t_data *data, int pid);
 int	infile_to_pipe(t_data *data);
 int	pipe_to_outfile(t_data *data);
-int	redirection(t_data *data, int current, int next);
+int	pipe_to_pipe(t_data *data, int current, int next);
 
 /*
 cmd_check
@@ -72,7 +72,7 @@ free
 int	all_free(t_data *data, int flag);
 int	dpch_free(char **s);
 int	pipe_free(int **pipefd);
-int	close_child_pipe(t_data *data);
+int	close_pipe(t_data *data);
 
 #endif
 //$@: 현재 Target 이름

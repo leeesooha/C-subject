@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 10:37:36 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/27 21:18:16 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/28 02:01:57 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,12 @@ int	main(int argc, char **argv, char **envp)
 	i = 0;
 	while (i <= data.npipe)
 	{
-		write(2, "debug\n", 6);
 		data.pipenum = i;
 		child(&data, 0);
 		i++;
 	}
-	waitpid(-1, 0, 0);
-//	close(data.pipefd[0][1]);
-//	close_child_pipe(&data);
-//	waitpid(-1, 0, 0);
-//	int wstatus;
-//	while (wait(&wstatus) > 0);
-//	close(data.outfilefd);
+	close_pipe(&data);
+	while (wait(0) > 0)
+		write(1, "", 0);
 	return (0);
 }

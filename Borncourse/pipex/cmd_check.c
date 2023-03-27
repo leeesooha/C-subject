@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:03:49 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/27 17:33:00 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/28 01:42:53 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ int	cmd_check(t_data *data)
 		i++;
 	}
 	free(sp_cmd);
-	perror("zsh");
+	all_free(data, 2);
 	return (0);
 }

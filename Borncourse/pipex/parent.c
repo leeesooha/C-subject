@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 12:11:24 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/27 14:15:54 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/28 01:59:53 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ int	parent(t_data *data)
 	int	i;
 
 	i = 0;
-	if (data->pipenum == data->npipe - 1)
-	{
+//	if (data->pipenum == data->npipe - 1)
+//	{
 		while (data->npipe > i)
 		{
 			close(data->pipefd[i][0]);
 			close(data->pipefd[i][1]);
 			i++;
 		}
-	}
+//	}
 	return (0);
 }
