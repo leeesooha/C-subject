@@ -5,49 +5,38 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/24 09:55:13 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/24 18:54:31 by soohlee          ###   ########.fr       */
+/*   Created: 2023/03/27 12:03:49 by soohlee           #+#    #+#             */
+/*   Updated: 2023/03/27 17:33:00 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int cmd_check(t_data *args, char *cmd)
+int	cmd_check(t_data *data)
 {
-    int     i;
-    char    *temp;
-    char    *full_namecmd;
+	int		i;
+	char	*temp;
+	char	*path_cmd;
+	char	**sp_cmd;
 
-    cmd = ft_substr(cmd, 0, space_idx(cmd));
-    if (!cmd)
-        all_free(args, 4);
-    i = 0;
-    while (args->envpaths[i])
-    {
-        full_namecmd = ft_strjoin("/", cmd);
-        if (!full_namecmd)
-           all_free(args, 4);
-        temp = full_namecmd;
-        full_namecmd = ft_strjoin(args->envpaths[i], full_namecmd);
-        free(temp);
-        if (access(full_namecmd, X_OK) == 0)
-        {
-            args->full_namecmd[args->pipenum] = full_namecmd;
-            return (0);
-        }
-        free(full_namecmd);
-        i++;
-    }
-    all_free(args, 4);
-    return (-1);
-}
-
-int space_idx(char *cmd)
-{
-    int i;
-
-    i = 0;
-    while(cmd[i] && cmd[i] != ' ')
-        i++;
-    return (i);
+	sp_cmd = ft_split(data->cmd[data->pipenum], ' ');
+	i = 0;
+	while (data->envpaths[i])
+	{
+		temp = ft_strjoin(data->envpaths[i], "/");
+		path_cmd = ft_strjoin(temp, sp_cmd[0]);
+		free(temp);
+		if (access(path_cmd, X_OK) == 0)
+		{
+			data->path_cmd = path_cmd;
+			data->sp_cmd = sp_cmd;
+			return (0);
+		}
+		else
+			free(path_cmd);
+		i++;
+	}
+	free(sp_cmd);
+	perror("zsh");
+	return (0);
 }

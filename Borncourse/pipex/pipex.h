@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 10:57:09 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/24 18:54:18 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/27 14:10:37 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,11 @@ typedef struct s_data
 	int		outfilefd;
 	int		**pipefd;
 	char	**cmd;
-	char	**full_namecmd;
-	int		cmd_total;
+	char	*path_cmd;
+	char	**sp_cmd;
+	int		ncmd;
 	int		pipenum;
-	int		pipe_total;
+	int		npipe;
 }			t_data;
 
 int	main(int argc, char **argv, char **envp);
@@ -42,35 +43,36 @@ int	main(int argc, char **argv, char **envp);
 /*
 creat data
 */
-int	creat_envp(t_data *args, int argc, char **argv, char **envp);
-int	creat_cmd(t_data *args);
-int	creat_pipe(t_data *args);
+int	creat_envp(t_data *data, int argc, char **argv, char **envp);
+int	creat_cmd(t_data *data);
+int	creat_pipe(t_data *data);
+int	file_check(t_data *data);
 
 /*
 child
 */
-int	child(t_data *args, int pid);
-int	infile_to_pipe(t_data *args, char *filename);
-int	pipe_to_outfile(t_data *args, char *filename);
-int	redirection(t_data *args, int current, int next);
+int	child(t_data *data, int pid);
+int	infile_to_pipe(t_data *data);
+int	pipe_to_outfile(t_data *data);
+int	redirection(t_data *data, int current, int next);
+
+/*
+cmd_check
+*/
+int	cmd_check(t_data *data);
 
 /*
 parent
 */
-int parent(t_data *args);
+int	parent(t_data *data);
 
-/*
-cmd check
-*/
-int cmd_check(t_data *args, char *cmd);
-int space_idx(char *cmd);
 /*
 free
 */
-int	all_free(t_data *args, int flag);
+int	all_free(t_data *data, int flag);
 int	dpch_free(char **s);
 int	pipe_free(int **pipefd);
-int	close_child_pipe(t_data *args);
+int	close_child_pipe(t_data *data);
 
 #endif
 //$@: 현재 Target 이름

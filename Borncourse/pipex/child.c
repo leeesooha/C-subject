@@ -6,77 +6,76 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:53:02 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/24 21:33:11 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/27 21:15:23 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	child(t_data *args, int pid)
+int	child(t_data *data, int pid)
 {
 	pid = fork();
 
+	//char *str[3];
+
+	//str[0] = "wc";
+	//str[1] = "-l";
+	//str[2] = 0;
 	if (pid == 0)
 	{
-		if (args->pipenum == 0)
+		if (data->pipenum == 0)
 		{
-			infile_to_pipe(args, args->argv[1]);
-			cmd_check(args, args->cmd[args->pipenum]);
-			execve(args->full_namecmd[args->pipenum], &(args->cmd[args->pipenum * 2]), args->envp);
+			infile_to_pipe(data);
+			cmd_check(data);
+			execve(data->path_cmd, data->sp_cmd, data->envp);
 		}
-		else if (args->pipenum < args->pipe_total - 1)
+		else if (data->pipenum < data->npipe)
 		{
-			redirection(args, args->pipenum, args->pipenum + 1);
-			cmd_check(args, args->cmd[args->pipenum]);
-			execve(args->full_namecmd[args->pipenum], &(args->cmd[args->pipenum * 2]), args->envp);
+			redirection(data, data->pipenum, data->pipenum + 1);
+			cmd_check(data);
+			execve(data->path_cmd, data->sp_cmd, data->envp);
 		}
-		else 
+		else
 		{
-			pipe_to_outfile(args, (args->argv)[args->argc - 1]);
-			cmd_check(args, args->cmd[args->pipenum]);
-			execve(args->full_namecmd[args->pipenum], &(args->cmd[args->pipenum * 2]), args->envp);
+			pipe_to_outfile(data);
+			cmd_check(data);
+			write(2, data->path_cmd, 50);
+			write(2, "\n", 1);
+			write(2, data->sp_cmd[0], 10);
+			write(2, "\n", 1);
+			write(2, data->sp_cmd[1], 10);
+			write(2, "\n", 1);
+//			execve("/bin/cat", str, data->envp);
+			execve(data->path_cmd, data->sp_cmd, data->envp);
 		}
 	}
 	return (0);
 }
 
-int	pipe_to_outfile(t_data *args, char *filename)
+int	pipe_to_outfile(t_data *data)
 {
-	if (access(filename, W_OK) == -1)
-		all_free(args, 4);
-	args->outfilefd = open(filename, O_CREAT | O_RDWR | O_TRUNC, 0000644);
-	if (args->outfilefd < 0)
-		all_free(args, 4);
-	dup2(args->outfilefd, 1);
-	dup2(args->pipefd[args->pipenum][0], 0);
-	close_child_pipe(args);
+	dup2(data->pipefd[0][0], 0);
+	dup2(data->outfilefd, 1);
+	close(data->outfilefd);
+	close(data->pipefd[0][1]);
+	close(data->pipefd[0][0]);
 	return (0);
 }
 
-int	redirection(t_data *args, int current, int next)
+int	redirection(t_data *data, int current, int next)
 {
-	dup2(args->pipefd[current - 1][0], 0);
-	dup2(args->pipefd[next - 1][1], 1);
-//	close_child_pipe(args);
+	dup2(data->pipefd[current - 1][0], 0);
+	dup2(data->pipefd[next - 1][1], 1);
+	close_child_pipe(data);
 	return (0);
 }
 
-int	infile_to_pipe(t_data *args, char *filename)
+int	infile_to_pipe(t_data *data)
 {
-	int		unusedfd;
-
-	if (access(filename, R_OK) == -1)
-		all_free(args, 4);
-	args->infilefd = open(filename, O_RDONLY);
-	if (args->infilefd < 0)
-		all_free(args, 4);
-	unusedfd = dup2(args->infilefd, 0);
-	if (unusedfd == -1)
-		all_free(args, 4);
-	unusedfd = dup2(args->pipefd[0][1], 1);
-	if (unusedfd == -1)
-		all_free(args, 4);
-//	close_child_pipe(args);
-	close(args->pipefd[0][1]);
+	dup2(data->infilefd, 0);
+	dup2(data->pipefd[0][1], 1);
+	close(data->infilefd);
+	close(data->pipefd[0][0]);
+	close(data->pipefd[0][1]);
 	return (0);
 }
