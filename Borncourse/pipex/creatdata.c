@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 11:41:35 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/28 01:44:20 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/28 20:54:21 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	creat_envp(t_data *data, int argc, char **argv, char **envp)
 	data->argc = argc;
 	data->argv = argv;
 	data->envp = envp;
+	heredoc_chk(data);
 	i = 0;
 	while (data->envp[i])
 	{
@@ -36,14 +37,14 @@ int	creat_cmd(t_data *data)
 {
 	int		i;
 
-	data->ncmd = data->argc - 3;
+	data->ncmd = data->argc - 3 - data->hdflag;
 	data->cmd = (char **)ft_calloc(sizeof(char *), (data->ncmd + 1));
 	if (!data->cmd)
 		all_free(data, 1);
 	i = 0;
 	while (i < data->ncmd)
 	{
-		data->cmd[i] = ft_strdup(data->argv[i + 2]);
+		data->cmd[i] = ft_strdup(data->argv[i + 2 + data->hdflag]);
 		if (!data->cmd[i])
 			all_free(data, 2);
 		i++;
@@ -75,9 +76,20 @@ int	creat_pipe(t_data *data)
 
 int	file_check(t_data *data)
 {
-	data->infilefd = open(data->argv[1], O_RDONLY);
-	if (data->infilefd == -1)
-		all_free(data, 2);
-	data->outfilefd = open(data->argv[data->argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 777);
+	if (data->hdflag == 0)
+	{
+		data->infilefd = open(data->argv[1], O_RDONLY);
+		if (data->infilefd == -1)
+			all_free(data, 2);
+		data->outfilefd = open(data->argv[data->argc - 1],
+				O_WRONLY | O_CREAT | O_TRUNC, 777);
+	}
+	else
+	{
+		heredoc(data);
+		data->infilefd = open("here_doc_tmp", O_RDONLY);
+		data->outfilefd = open(data->argv[data->argc - 1],
+				O_CREAT | O_WRONLY | O_APPEND, 777);
+	}
 	return (0);
 }

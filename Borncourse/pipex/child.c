@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:53:02 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/28 01:58:23 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/28 21:19:41 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	child(t_data *data, int pid)
 {
 	pid = fork();
-
 	if (pid == 0)
 	{
 		if (data->pipenum == 0)
@@ -35,6 +34,7 @@ int	infile_to_pipe(t_data *data)
 	dup2(data->infilefd, 0);
 	dup2(data->pipefd[0][1], 1);
 	close_pipe(data);
+	return (0);
 	return (0);
 }
 

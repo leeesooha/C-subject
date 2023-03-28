@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 10:57:09 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/28 00:59:50 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/28 16:52:33 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@
 typedef struct s_data
 {
 	int		argc;
+	int		hdfd;
+	char	**heredoc;
+	int		hdflag;
 	char	**argv;
 	char	**envp;
 	char	**envpaths;
@@ -73,6 +76,12 @@ int	all_free(t_data *data, int flag);
 int	dpch_free(char **s);
 int	pipe_free(int **pipefd);
 int	close_pipe(t_data *data);
+
+/*
+here_doc
+*/
+int	heredoc_chk(t_data *data);
+int	heredoc(t_data *data);
 
 #endif
 //$@: 현재 Target 이름
