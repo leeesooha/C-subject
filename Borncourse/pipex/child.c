@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:53:02 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/29 12:04:52 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/29 21:23:16 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	child(t_data *data, int pid)
 		else
 			pipe_to_outfile(data);
 		cmd_check(data);
+		dpch_free(data->envpaths);
+		pipe_free(data->pipefd);
 		execve(data->path_cmd, data->sp_cmd, data->envp);
 	}
 	return (0);
@@ -31,6 +33,8 @@ int	child(t_data *data, int pid)
 
 int	infile_to_pipe(t_data *data)
 {
+	if (data->infilefd == -1)
+		all_free(data, 2, 0, 0);
 	dup2(data->infilefd, 0);
 	dup2(data->pipefd[0][1], 1);
 	close_pipe(data);

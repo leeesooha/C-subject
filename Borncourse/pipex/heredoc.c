@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 14:22:26 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/29 11:46:31 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/29 20:52:54 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,9 @@
 int	heredoc_chk(t_data *data)
 {
 	if (ft_strncmp("here_doc", data->argv[1], 9))
-	{
-		data->heredoc = 0;
 		data->hdflag = 0;
-		return (0);
-	}
-	data->heredoc = (char **)ft_calloc(sizeof(char *), 3);
-	data->heredoc[0] = ft_strdup("here_doc");
-	data->heredoc[1] = ft_strdup(data->argv[2]);
-	data->hdflag = 1;
+	else
+		data->hdflag = 1;
 	return (0);
 }
 
@@ -33,10 +27,12 @@ int	heredoc(t_data *data)
 	char	herefd;
 	char	*endflag;
 
+	buff = 0;
 	herefd = open("here_doc_tmp", O_CREAT | O_WRONLY | O_TRUNC, 644);
 	endflag = ft_strjoin(data->argv[2], "\n");
 	while (1)
 	{
+		write(1, "> ", 2);
 		buff = get_next_line(0);
 		if (ft_strncmp(buff, endflag, ft_strlen(endflag)) == 0)
 		{
@@ -48,6 +44,7 @@ int	heredoc(t_data *data)
 		write(herefd, buff, ft_strlen(buff));
 		if (buff)
 			free(buff);
+		buff = 0;
 	}
 	return (0);
 }
