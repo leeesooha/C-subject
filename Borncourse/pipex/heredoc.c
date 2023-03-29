@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 14:22:26 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/29 10:38:53 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/29 11:46:31 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	heredoc(t_data *data)
 	char	herefd;
 	char	*endflag;
 
-	herefd = open("here_doc_tmp", O_CREAT | O_WRONLY | O_TRUNC, 0000644);
+	herefd = open("here_doc_tmp", O_CREAT | O_WRONLY | O_TRUNC, 644);
 	endflag = ft_strjoin(data->argv[2], "\n");
 	while (1)
 	{

@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 10:57:09 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/28 16:52:33 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/29 12:34:01 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ int	pipe_to_pipe(t_data *data, int current, int next);
 /*
 cmd_check
 */
-int	cmd_check(t_data *data);
+int		cmd_check(t_data *data);
+char	**cmd_split(t_data *data);
 
 /*
 parent

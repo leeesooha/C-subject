@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 10:37:36 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/28 21:19:44 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/29 13:05:15 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	main(int argc, char **argv, char **envp)
 	{
 		data.pipenum = i;
 		child(&data, 0);
+		if (data.pipenum == 0 && data.hdflag == 1)
+			unlink("here_doc_tmp");
 		i++;
 	}
 	close_pipe(&data);
