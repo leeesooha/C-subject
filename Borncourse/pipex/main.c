@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 10:37:36 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/29 21:44:41 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/30 17:36:10 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;
 	int		i;
+	int		status;
 
 	if (argc <= 3)
 		return (0);
@@ -36,6 +37,5 @@ int	main(int argc, char **argv, char **envp)
 		write(1, "", 0);
 	unlink("here_doc_tmp");
 	all_free(&data, 3, 0, 10);
-	system("leaks pipex");
 	return (0);
 }

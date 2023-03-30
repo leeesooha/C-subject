@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 11:41:35 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/29 21:10:47 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/30 17:41:53 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,20 +83,20 @@ int	file_check(t_data *data)
 		if (data->infilefd == -1)
 			perror(data->argv[1]);
 		data->outfilefd = open(data->argv[data->argc - 1],
-				O_CREAT | O_RDWR | O_TRUNC, 0000644);
+				O_CREAT | O_RDWR | O_TRUNC, 0644);
 		if (data->outfilefd < 0)
-			all_free(data, 3, 0, 2);
+			perror(data->argv[data->argc - 1]);
 	}
 	else
 	{
 		heredoc(data);
-		data->infilefd = open("here_doc_tmp", O_RDONLY);
+		data->infilefd = open("here_doc_tmp", O_RDONLY, 0644);
 		if (data->infilefd == -1)
 			perror("");
 		data->outfilefd = open(data->argv[data->argc - 1],
-				O_CREAT | O_WRONLY | O_APPEND, 0666);
-		if (data->outfilefd == -1)
-			all_free(data, 3, 0, 2);
+				O_CREAT | O_WRONLY | O_APPEND, 0644);
+		if (data->outfilefd < 0)
+			perror(data->argv[data->argc - 1]);
 	}
 	return (0);
 }

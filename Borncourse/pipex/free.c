@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 11:14:51 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/29 21:25:25 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/30 17:42:37 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,13 @@ void	error_print(t_data *data, int errorflag)
 	if (errorflag == 1)
 		perror("");
 	else if (errorflag == 2)
-	{
 		perror(data->argv[1]);
-	}
 	else if (errorflag == 3)
 	{
 		print = ft_strjoin(data->sp_cmd[0], ": command not found\n");
 		if (print)
 			write(2, print, ft_strlen(print));
 	}
+	else if (errorflag == 4)
+		perror(data->argv[data->argc - 1]);
 }

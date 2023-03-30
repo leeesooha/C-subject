@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:53:02 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/29 21:23:16 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/30 17:45:50 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int	pipe_to_pipe(t_data *data, int current, int next)
 
 int	pipe_to_outfile(t_data *data)
 {
+	if (data->outfilefd < 0)
+		all_free(data, 3, 0, 0);
 	dup2(data->pipefd[data->pipenum - 1][0], 0);
 	dup2(data->outfilefd, 1);
 	close_pipe(data);

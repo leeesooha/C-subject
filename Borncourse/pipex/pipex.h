@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 10:57:09 by soohlee           #+#    #+#             */
-/*   Updated: 2023/03/29 21:50:01 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/03/30 15:36:23 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include "./libft/includes/libft.h"
+# include <stdio.h>
 
 typedef struct s_data
 {
