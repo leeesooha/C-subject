@@ -1,4 +1,4 @@
-SRCS = main.c
+SRCS = main.c free.c map_check.c
 
 OBJS = $(SRCS:.c=.o)
 CFLAGS = -Wall -Wextra -Werror
@@ -12,7 +12,7 @@ all : $(NAME)
 
 $(NAME) : $(OBJS)
 	cd libft; make;
-	$(AR) $(ARFLAGS) $(NAME) $(OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 
 clean :
 	cd libft; make clean

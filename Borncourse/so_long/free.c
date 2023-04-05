@@ -6,23 +6,28 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 13:46:28 by soohlee           #+#    #+#             */
-/*   Updated: 2023/04/03 18:20:07 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/04/05 12:53:24 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	ft_error(char **s, int flag)
+int	ft_error(t_config *flag, int idx, int err_flag)
 {
-	if (flag == 0)
+	if (flag != 0)
+		free_double(flag->map, idx);
+	if (err_flag == 0)
 		perror("");
+	else if (err_flag == 1)
+	{
+		write(2, "Error\n", 6);
+		write(2, "Invalid map\n", 12);
+	}
 	exit (1);
 }
 
 int	free_double(char **s, int idx)
 {
-	if (s == 0)
-		ft_error(0, 0);
 	while (1)
 	{
 		if (idx == -1)
@@ -30,6 +35,5 @@ int	free_double(char **s, int idx)
 		free(s[idx--]);
 	}
 	free(s);
-	ft_error(0, 0);
 	return (0);
 }

@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   map_check2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/01 18:02:52 by soohlee           #+#    #+#             */
-/*   Updated: 2023/04/05 13:24:36 by soohlee          ###   ########.fr       */
+/*   Created: 2023/04/05 13:23:26 by soohlee           #+#    #+#             */
+/*   Updated: 2023/04/05 13:55:21 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int argc, char **argv)
+int path_check(t_config *flag)
 {
-	char	**map;
+    int x;
+    int y;
 
-	map = 0;
-	if (argc == 100 || map)
-		return (0);
-	map_check(argv[1], &map);
-	return (0);
+    x = flag->start_xy[0];
+    y = flag->start_xy[1];
+    dfs(x, y, *flag);
+    return (0);
 }
