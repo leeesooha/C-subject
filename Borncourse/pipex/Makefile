@@ -24,7 +24,7 @@ clean :
 	cd ./libft ; make clean
 	rm -f $(OBJS) $(OBJS_BONUS)
 
-fclean :
+fclean : clean
 	cd ./libft ; make fclean
 	rm -f $(NAME) bonus
 
