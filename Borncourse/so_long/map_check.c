@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 13:38:15 by soohlee           #+#    #+#             */
-/*   Updated: 2023/04/05 13:51:06 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/04/05 14:08:21 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,8 +129,8 @@ int flagging(char c, t_config *flag, int idx, int jdx)
 		(flag->out)++;
 	else if (c == 'P')
 	{
-		flag->start_xy[1] = jdx;
-		flag->start_xy[0] = idx;
+		flag->start_xy[0] = jdx;
+		flag->start_xy[1] = idx;
 		(flag->start)++;
 	}
 	else
