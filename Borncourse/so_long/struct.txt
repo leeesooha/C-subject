@@ -1,7 +1,0 @@
-파싱
-
-int map_check
-{
-    read_map(map);
-    
-}

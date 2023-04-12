@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 13:46:28 by soohlee           #+#    #+#             */
-/*   Updated: 2023/04/05 12:53:24 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/04/10 11:34:28 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ int	ft_error(t_config *flag, int idx, int err_flag)
 	if (flag != 0)
 		free_double(flag->map, idx);
 	if (err_flag == 0)
-		perror("");
+		write(2, "Invalid Argument\n", 17);
 	else if (err_flag == 1)
+		perror("");
+	else if (err_flag == 2)
 	{
 		write(2, "Error\n", 6);
 		write(2, "Invalid map\n", 12);

@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_check2.c                                       :+:      :+:    :+:   */
+/*   arg_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/05 13:23:26 by soohlee           #+#    #+#             */
-/*   Updated: 2023/04/10 11:08:51 by soohlee          ###   ########.fr       */
+/*   Created: 2023/04/10 11:26:27 by soohlee           #+#    #+#             */
+/*   Updated: 2023/04/10 11:36:38 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "so_long.h"
+#include "so_long.h"
 
-//int	path_check(t_config *flag)
-//{
-//	int	x;
-//	int	y;
+int	arg_check(char *argv)
+{
+	char	*extension;
 
-//	x = flag->start_xy[0];
-//	y = flag->start_xy[1];
-//	dfs(x, y, flag->map, flag);
-//	return (0);
-//}
-
-//int	dfs(int x, int y, char **map, t_config *flag)
-//{
-//	dfs ();
-//	return (0);
-//}
+	extension = ft_strchr(argv, '.');
+	if (extension && !ft_strncmp(extension, ".ber", 5))
+		return (1);
+	return (0);
+}
