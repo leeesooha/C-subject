@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 20:05:51 by soohlee           #+#    #+#             */
-/*   Updated: 2023/04/12 19:59:34 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/04/14 17:54:43 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,19 @@ typedef enum e_errstr
 	FREE	= 1
 }	t_errstr;
 
-typedef struct s_vars
-{
-	void	*mlx;
-	void	*win;
-}	t_vars;
-
 typedef struct s_mlx_data
 {
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		line_len;
-	int		endian;
+	void		*mlx;
+	void		*win;
+	void		*img;
+	char		*addr;
+	int			bpp;
+	int			line_len;
+	int			endian;
+	int			xy[2];
 }	t_mlx_data;
 
-typedef struct s_config
+typedef struct s_map_data
 {
 	char	**map;
 	int		empty;
@@ -51,7 +48,9 @@ typedef struct s_config
 	int		start;
 	int		start_xy[2];
 	int		idx;
-}	t_config;
+	int		row_len;
+	int		col_len;
+}	t_map_data;
 
 /*
 so_long
@@ -61,16 +60,16 @@ int	main(int argc, char **argv);
 /*
 map_check
 */
-int	map_check(char *file, char ***map, int *map_weight, int *map_height);
-int	read_map(char *file, t_config *flag, int *map_weight, int *map_height);
+int	map_check(char *file, t_map_data *map_db);
+int	read_map(char *file, t_map_data *map_db);
 int	nl_len(char *file, int *buff_len);
-int	config_check(t_config *flag, int map_row_len, int buff_len);
-int	flagging(char c, t_config *flag, int idc, int jdx);
+int	config_check(t_map_data *map_db, int buff_len);
+int	flagging(char c, t_map_data *map_db, int idx, int jdx);
 
 /*
 error & free
 */
-int	ft_error(t_config *flag, int idx, int err_flag);
+int	ft_error(t_map_data *map_db, int idx, int err_flag);
 int	free_double(char **s, int idx);
 
 /*
@@ -81,6 +80,6 @@ int	arg_check(char *argv);
 /*
 map_setting
 */
-int	map_setting(char **map, t_mlx_data *img, t_vars *vars);
+int	map_setting(t_map_data *map_db, t_mlx_data *mlx_db, const char **file);
 
 #endif
