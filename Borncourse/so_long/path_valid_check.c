@@ -6,11 +6,11 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:23:26 by soohlee           #+#    #+#             */
-/*   Updated: 2023/04/10 11:08:51 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/04/17 14:55:45 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "so_long.h"
+//#include "./includes/so_long.h"
 
 //int	path_check(t_config *flag)
 //{

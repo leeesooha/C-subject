@@ -1,4 +1,5 @@
-SRCS = main.c free.c map_check.c arg_check.c
+SRCS = main.c free.c map_init.c arg_check.c creat_filehash.c key_hook.c \
+		map_print.c game_end_check.c
 
 OBJS = $(SRCS:.c=.o)
 CFLAGS = -Wall -Wextra -Werror
