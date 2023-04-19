@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 20:05:51 by soohlee           #+#    #+#             */
-/*   Updated: 2023/04/18 00:06:35 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/04/19 23:28:52 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,17 @@ typedef enum e_errstr
 	NO_FREE = 0,
 	FREE	= 1
 }	t_errstr;
+
+typedef struct s_count
+{
+	int		empty;
+	int		wall;
+	int		collect;
+	int		out;
+	int		start;
+	int		from;
+	char	**count_map;
+}	t_count;
 
 typedef struct s_mlx_data
 {
@@ -49,6 +60,7 @@ typedef struct s_mlx_data
 
 typedef struct s_map_data
 {
+	char	**map;
 	char	**file;
 	int		empty;
 	int		wall;
@@ -59,6 +71,8 @@ typedef struct s_map_data
 	int		idx;
 	int		row_len;
 	int		col_len;
+	int		validpath;
+	struct s_count	cnt;
 }	t_map_data;
 
 /*
