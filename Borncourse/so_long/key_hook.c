@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 16:57:58 by soohlee           #+#    #+#             */
-/*   Updated: 2023/04/17 23:33:12 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/04/20 16:51:46 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	key_hook(int keycode, t_mlx_data *mlx_db)
 	if (!move_able_check(keycode, mlx_db))
 		return (0);
 	move_character(keycode, mlx_db, mlx_db->width, mlx_db->height);
+	game_end_check(mlx_db);
 	return (0);
 }
 
@@ -42,14 +43,13 @@ int	move_able_check(int keycode, t_mlx_data *mlx_db)
 
 int	move_character(int keycode, t_mlx_data *mlx_db, int width, int height)
 {
-	if (mlx_db->map[mlx_db->xy[1]][mlx_db->xy[0]] == 'E')
-		my_put_window(mlx_db, width, height, 'E');
+	if (mlx_db->map[mlx_db->xy[1]][mlx_db->xy[0]] == 'e')
+		my_put_window(mlx_db, width, height, 'e');
 	else
 		my_put_window(mlx_db, width, height, '0');
 	direction(mlx_db, keycode, &mlx_db->xy[0], &mlx_db->xy[1]);
 	my_put_window(mlx_db, width, height, 'P');
 	ft_printf("%d\n", ++mlx_db->path_cnt);
-	game_end_check(mlx_db);
 	return (0);
 }
 
@@ -74,7 +74,7 @@ int	direction(t_mlx_data *mlx_db, int keycode, int *x, int *y)
 		*x -= 1;
 	else if (keycode == 2)
 		*x += 1;
-	if (mlx_db->map[mlx_db->xy[1]][mlx_db->xy[0]] == 'C')
+	if (mlx_db->map[mlx_db->xy[1]][mlx_db->xy[0]] == 'c')
 	{
 		mlx_db->eat_count++;
 		mlx_db->map[mlx_db->xy[1]][mlx_db->xy[0]] = '0';

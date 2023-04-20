@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 13:38:15 by soohlee           #+#    #+#             */
-/*   Updated: 2023/04/18 00:02:55 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/04/20 16:28:46 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int	map_init(char *mapfile, t_map_data *map_db, t_mlx_data *mlx_db)
 	mlx_db->eat_count = 0;
 	mlx_db->path_cnt = 0;
 	new_map(mapfile, map_db, mlx_db);
-//	path_valid_check(유효경로체크함수만들어야함);
+	map_db->map = mlx_db->map;
+	path_valid_check(map_db, mlx_db);
 	return (1);
 }
 

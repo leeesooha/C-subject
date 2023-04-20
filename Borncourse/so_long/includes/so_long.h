@@ -6,14 +6,14 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 20:05:51 by soohlee           #+#    #+#             */
-/*   Updated: 2023/04/19 23:28:52 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/04/20 16:27:19 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "../minilibx_mms_20210621/mlx.h"
+//# include "../minilibx_mms_20210621/mlx.h"
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
@@ -113,6 +113,11 @@ map_setting
 */
 int	map_print(t_map_data *map_db, t_mlx_data *mlx_db);
 int	new_mlx(t_map_data *map_db, t_mlx_data *mlx_db);
+
+/*
+path_check
+*/
+int	path_valid_check(t_map_data *map_db, t_mlx_data *mlx_db);
 
 /*
 game_end_check
