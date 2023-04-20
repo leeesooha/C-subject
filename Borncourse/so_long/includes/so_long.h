@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 20:05:51 by soohlee           #+#    #+#             */
-/*   Updated: 2023/04/20 16:27:19 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/04/21 00:56:01 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	flagging(t_mlx_data *mlx_db, t_map_data *map_db, int idx, int jdx);
 error & free
 */
 int	ft_end(t_mlx_data *mlx_db, int idx, int err_flag);
-int	two_dimen_free(char **s, int idx);
+int	two_ptr_free(char **s, int idx);
 int	err_print(int err_flag);
 int	free_filehash(t_mlx_data *mlx_db);
 
@@ -117,7 +117,7 @@ int	new_mlx(t_map_data *map_db, t_mlx_data *mlx_db);
 /*
 path_check
 */
-int	path_valid_check(t_map_data *map_db, t_mlx_data *mlx_db);
+int	valid_path_search(t_map_data *map_db, t_mlx_data *mlx_db);
 
 /*
 game_end_check

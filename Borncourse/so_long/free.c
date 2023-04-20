@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 13:46:28 by soohlee           #+#    #+#             */
-/*   Updated: 2023/04/20 16:45:03 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/04/21 00:57:23 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_end(t_mlx_data *mlx_db, int idx, int err_flag)
 {
 	if (mlx_db)
-		two_dimen_free(mlx_db->map, idx);
+		two_ptr_free(mlx_db->map, idx);
 	if (err_flag == 3 || err_flag == 4)	//flag3 : esc //flag4 : success
 		free_filehash(mlx_db);
 	err_print(err_flag);
@@ -37,7 +37,7 @@ int	err_print(int err_flag)
 	exit (1);
 }
 
-int	two_dimen_free(char **s, int idx)
+int	two_ptr_free(char **s, int idx)
 {
 	while (1)
 	{
