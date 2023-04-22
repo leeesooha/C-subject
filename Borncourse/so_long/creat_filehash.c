@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 16:52:32 by soohlee           #+#    #+#             */
-/*   Updated: 2023/04/20 16:44:48 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/04/22 18:54:47 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,18 @@ int	creat_filehash(t_mlx_data *mlx_db)
 	(mlx_db->file)['1'] = ft_strdup("./imgfile/wall.xpm");
 	(mlx_db->file)['c'] = ft_strdup("./imgfile/collect.xpm");
 	(mlx_db->file)['e'] = ft_strdup("./imgfile/exit.xpm");
-	(mlx_db->file)['P'] = ft_strdup("./imgfile/yoda.xpm");
+	(mlx_db->file)['P'] = ft_strdup("./imgfile/yoda1.xpm");
+	(mlx_db->file)['O'] = ft_strdup("./imgfile/yoda2.xpm");
 	(mlx_db->file)['S'] = ft_strdup("./imgfile/start.xpm");
+	(mlx_db->file)['D'] = ft_strdup("./imgfile/enemy.xpm");
 	return (filehash_check(mlx_db));
 }
 
 int	filehash_check(t_mlx_data *mlx_db)
 {
-	if (!(mlx_db->file)['0'] || !(mlx_db->file)['1'] || !(mlx_db->file)['C']
-		|| !(mlx_db->file)['E'] || !(mlx_db->file)['P'] || !(mlx_db->file)['S'])
+	if (!(mlx_db->file)['0'] || !(mlx_db->file)['1'] || !(mlx_db->file)['c']
+		|| !(mlx_db->file)['e'] || !(mlx_db->file)['P'] || !(mlx_db->file)['S']
+		|| !(mlx_db->file)['O'] | !(mlx_db->file)['D'])
 	{
 		if ((mlx_db->file)['0'])
 			free ((mlx_db->file)['0']);
@@ -43,6 +46,10 @@ int	filehash_check(t_mlx_data *mlx_db)
 			free ((mlx_db->file)['P']);
 		if ((mlx_db->file)['S'])
 			free ((mlx_db->file)['S']);
+		if ((mlx_db->file)['O'])
+			free ((mlx_db->file)['O']);
+		if ((mlx_db->file)['D'])
+			free ((mlx_db->file)['D']);
 		free(mlx_db->file);
 		ft_end(mlx_db, mlx_db->row_len, 1);
 	}

@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 13:38:15 by soohlee           #+#    #+#             */
-/*   Updated: 2023/04/20 16:28:46 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/04/22 18:08:57 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,9 @@ int	map_init(char *mapfile, t_map_data *map_db, t_mlx_data *mlx_db)
 	map_db->out = 0;
 	map_db->start = 0;
 	map_db->wall = 0;
-	mlx_db->eat_count = 0;
-	mlx_db->path_cnt = 0;
 	new_map(mapfile, map_db, mlx_db);
 	map_db->map = mlx_db->map;
-	path_valid_check(map_db, mlx_db);
+	valid_path_search(map_db, mlx_db);
 	return (1);
 }
 
@@ -36,6 +34,7 @@ int	new_map(char *mapfile, t_map_data *map_db, t_mlx_data *mlx_db)
 	if (fd < 0)
 		ft_end (0, 0, 1);
 	map_size(map_db, mapfile);
+	mlx_db->col_len = map_db->col_len;
 	mlx_db->row_len = map_db->row_len;
 	mlx_db->map = (char **)malloc(sizeof(char *) * map_db->row_len + 1);
 	if (!mlx_db->map)

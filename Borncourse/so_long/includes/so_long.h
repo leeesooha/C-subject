@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 20:05:51 by soohlee           #+#    #+#             */
-/*   Updated: 2023/04/21 00:56:01 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/04/22 22:00:49 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include "../libft/includes/libft.h"
-
+# include <mlx.h>
 # include <stdio.h>
 
 typedef enum e_errstr
@@ -34,7 +34,6 @@ typedef struct s_count
 	int		collect;
 	int		out;
 	int		start;
-	int		from;
 	char	**count_map;
 }	t_count;
 
@@ -54,8 +53,11 @@ typedef struct s_mlx_data
 	int			collect;
 	int			width;
 	int			height;
-	int			path_cnt;
+	int			print_cnt;
 	int			row_len;
+	int			col_len;
+	int			enemy_num;
+	int			enemy_direction[500];
 }	t_mlx_data;
 
 typedef struct s_map_data
@@ -71,7 +73,6 @@ typedef struct s_map_data
 	int		idx;
 	int		row_len;
 	int		col_len;
-	int		validpath;
 	struct s_count	cnt;
 }	t_map_data;
 
@@ -111,8 +112,10 @@ int	filehash_check(t_mlx_data *mlx_db);
 /*
 map_setting
 */
-int	map_print(t_map_data *map_db, t_mlx_data *mlx_db);
+int	mlxwin_init(t_map_data *map_db, t_mlx_data *mlx_db);
 int	new_mlx(t_map_data *map_db, t_mlx_data *mlx_db);
+int	map_print(t_mlx_data *mlx_db);
+int	add_enemy(t_mlx_data *mlx_db);
 
 /*
 path_check
@@ -132,5 +135,12 @@ int	move_able_check(int keycode, t_mlx_data *mlx_db);
 int	move_character(int keycode, t_mlx_data *mlx_db, int width, int height);
 int	direction(t_mlx_data *mlx_db, int keycode, int *x, int *y);
 int	my_put_window(t_mlx_data *mlx_db, int width, int height, char img);
+
+/*
+keyhook_bonus
+*/
+int	my_str_put_window(t_mlx_data *mlx_db, int width, int height, char img);
+int	modify_enemy_map(t_mlx_data *mlx_db);
+int	enemy_print(t_mlx_data *mlx_db, int x, int y, int xdir);
 
 #endif

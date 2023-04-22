@@ -1,5 +1,6 @@
 SRCS = main.c free.c map_init.c arg_check.c creat_filehash.c key_hook.c \
-		map_print.c game_end_check.c path_valid_check.c
+		map_print.c game_end_check.c valid_path_search.c \
+		my_str_put_windows_bonus.c enemy_print.c
 
 OBJS = $(SRCS:.c=.o)
 CFLAGS = -Wall -Wextra -Werror

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   path_valid_check.c                                 :+:      :+:    :+:   */
+/*   valid_path_search.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:23:26 by soohlee           #+#    #+#             */
-/*   Updated: 2023/04/21 00:57:48 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/04/21 12:40:54 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,23 +40,21 @@ static int	zero_map_init(t_map_data *map_db, t_mlx_data *mlx_db)
 	map_db->cnt.out = 0;
 	map_db->cnt.start = 0;
 	map_db->cnt.wall = 0;
-	map_db->validpath = 0;
-	map_db->cnt.from = 0;
-	i = 0;
-	map_db->cnt.count_map = (char **)malloc(sizeof(char *) * map_db->row_len + 1);
+	i = -1;
+	map_db->cnt.count_map = (char **)malloc(sizeof(char *)
+			* map_db->row_len + 1);
 	if (!map_db->cnt.count_map)
 		ft_end(mlx_db, map_db->row_len, 1);
-	while (i < map_db->row_len)
+	while (++i < map_db->row_len)
 	{
 		map_db->cnt.count_map[i] = (char *)malloc(sizeof(char)
-			* map_db->col_len);
+				* map_db->col_len);
 		if (!(map_db->cnt.count_map + i))
 		{
 			two_ptr_free(map_db->cnt.count_map, i - 1);
 			ft_end(mlx_db, map_db->row_len, 1);
 		}
 		ft_memset(map_db->cnt.count_map[i], '0', map_db->col_len);
-		i++;
 	}
 	map_db->cnt.count_map[i] = 0;
 	return (0);
