@@ -6,14 +6,13 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 20:05:51 by soohlee           #+#    #+#             */
-/*   Updated: 2023/04/24 18:38:10 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/04/24 20:27:34 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_BONUS_H
 # define SO_LONG_BONUS_H
 
-//# include "../minilibx_mms_20210621/mlx.h"
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
@@ -21,11 +20,15 @@
 # include <mlx.h>
 # include <stdio.h>
 
-typedef enum e_errstr
-{
-	NO_FREE = 0,
-	FREE	= 1
-}	t_errstr;
+# define ARGS_ERROR 			0
+# define FD_MOLLOC_ERROR 		1
+# define MAP_CONTENTS_ERROR		2
+# define ESC 					53
+# define SUCCESS				4
+# define NOT_ROUTE				5
+# define FAIL					6
+# define STRPUT_MALLOC_ERROR	7
+# define X_BUTTEN				17
 
 typedef struct s_count
 {

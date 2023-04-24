@@ -8,7 +8,7 @@ SRCS_BONUS = main_bonus.c free_bonus.c map_init_bonus.c arg_check_bonus.c \
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 CFLAGS = -Wall -Wextra -Werror
-MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit -lz
+MLX_FLAGS = -Lminilibx_opengl -lmlx -framework OpenGL -framework AppKit -lz
 MLX_A = ./minilibx_opengl/libmlx.a
 CC = cc
 NAME = so_long

@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 18:35:41 by soohlee           #+#    #+#             */
-/*   Updated: 2023/04/24 18:39:08 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/04/24 19:43:55 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int	mlxwin_init(t_map_data *map_db, t_mlx_data *mlx_db)
 {
 	if (!new_mlx(map_db, mlx_db))
-		ft_end (mlx_db, map_db->row_len, 1);
+		ft_end (mlx_db, map_db->row_len, FD_MOLLOC_ERROR);
 	if (!creat_filehash(mlx_db))
-		ft_end (mlx_db, map_db->row_len, 1);
+		ft_end (mlx_db, map_db->row_len, FD_MOLLOC_ERROR);
 	add_enemy(mlx_db);
 	map_print(mlx_db);
 	return (1);
@@ -56,10 +56,10 @@ int	new_mlx(t_map_data *map_db, t_mlx_data *mlx_db)
 	mlx_db->print_cnt = 0;
 	mlx_db->mlx = mlx_init();
 	if (!mlx_db->mlx)
-		ft_end (mlx_db, map_db->row_len, 1);
+		ft_end (mlx_db, map_db->row_len, FD_MOLLOC_ERROR);
 	mlx_db->win = mlx_new_window(mlx_db->mlx, map_db->col_len * mlx_db->width,
 			map_db->row_len * mlx_db->height, "SOOHA GAME");
 	if (!mlx_db->win)
-		ft_end (mlx_db, map_db->row_len, 1);
+		ft_end (mlx_db, map_db->row_len, FD_MOLLOC_ERROR);
 	return (1);
 }

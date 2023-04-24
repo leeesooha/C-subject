@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:23:26 by soohlee           #+#    #+#             */
-/*   Updated: 2023/04/24 18:39:23 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/04/24 20:14:15 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	valid_path_search(t_map_data *map_db, t_mlx_data *mlx_db)
 	if (dfs(x, y, map_db->cnt, map_db))
 		return (two_ptr_free(map_db->cnt.count_map, map_db->row_len));
 	two_ptr_free(map_db->cnt.count_map, map_db->row_len);
-	ft_end(mlx_db, map_db->row_len, 5);
+	ft_end(mlx_db, map_db->row_len, NOT_ROUTE);
 	return (0);
 }
 
@@ -45,7 +45,7 @@ static int	zero_map_init(t_map_data *map_db, t_mlx_data *mlx_db)
 	map_db->cnt.count_map = (char **)malloc(sizeof(char *)
 			* map_db->row_len + 1);
 	if (!map_db->cnt.count_map)
-		ft_end(mlx_db, map_db->row_len, 1);
+		ft_end(mlx_db, map_db->row_len, FD_MOLLOC_ERROR);
 	while (++i < map_db->row_len)
 	{
 		map_db->cnt.count_map[i] = (char *)malloc(sizeof(char)
@@ -53,7 +53,7 @@ static int	zero_map_init(t_map_data *map_db, t_mlx_data *mlx_db)
 		if (!(map_db->cnt.count_map + i))
 		{
 			two_ptr_free(map_db->cnt.count_map, i - 1);
-			ft_end(mlx_db, map_db->row_len, 1);
+			ft_end(mlx_db, map_db->row_len, FD_MOLLOC_ERROR);
 		}
 		ft_memset(map_db->cnt.count_map[i], '0', map_db->col_len);
 	}

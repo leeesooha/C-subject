@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 16:52:32 by soohlee           #+#    #+#             */
-/*   Updated: 2023/04/24 18:38:36 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/04/24 19:41:49 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	creat_filehash(t_mlx_data *mlx_db)
 {
 	mlx_db->file = (char **)ft_calloc(sizeof(char *), 257);
 	if (!mlx_db->file)
-		ft_end (mlx_db, mlx_db->row_len, 1);
+		ft_end (mlx_db, mlx_db->row_len, FD_MOLLOC_ERROR);
 	(mlx_db->file)['0'] = ft_strdup("./imgfile/back_ground.xpm");
 	(mlx_db->file)['1'] = ft_strdup("./imgfile/wall.xpm");
 	(mlx_db->file)['c'] = ft_strdup("./imgfile/collect.xpm");
@@ -51,7 +51,7 @@ int	filehash_check(t_mlx_data *mlx_db)
 		if ((mlx_db->file)['D'])
 			free ((mlx_db->file)['D']);
 		free(mlx_db->file);
-		ft_end(mlx_db, mlx_db->row_len, 1);
+		ft_end(mlx_db, mlx_db->row_len, FD_MOLLOC_ERROR);
 	}
 	return (1);
 }
