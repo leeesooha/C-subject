@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   free_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 13:46:28 by soohlee           #+#    #+#             */
-/*   Updated: 2023/04/24 18:33:27 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/04/24 18:38:43 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/so_long.h"
+#include "./includes/so_long_bonus.h"
 
 int	ft_end(t_mlx_data *mlx_db, int idx, int err_flag)
 {

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 18:02:52 by soohlee           #+#    #+#             */
-/*   Updated: 2023/04/24 18:33:53 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/04/24 18:38:54 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/so_long.h"
+#include "./includes/so_long_bonus.h"
 
 //static int	test_print(char **map);
 //void	end_check(void)

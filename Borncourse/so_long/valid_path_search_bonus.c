@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   valid_path_search.c                                :+:      :+:    :+:   */
+/*   valid_path_search_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:23:26 by soohlee           #+#    #+#             */
-/*   Updated: 2023/04/24 18:39:23 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/04/24 18:39:21 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/so_long.h"
+#include "./includes/so_long_bonus.h"
 
 int			valid_path_search(t_map_data *map_db, t_mlx_data *mlx_db);
 static int	zero_map_init(t_map_data *map_db, t_mlx_data *mlx_db);

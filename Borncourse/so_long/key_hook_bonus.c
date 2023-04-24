@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_hook.c                                         :+:      :+:    :+:   */
+/*   key_hook_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 16:57:58 by soohlee           #+#    #+#             */
-/*   Updated: 2023/04/24 17:38:40 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/04/24 18:38:50 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/so_long.h"
+#include "./includes/so_long_bonus.h"
 
 int	key_hook(int keycode, t_mlx_data *mlx_db)
 {
