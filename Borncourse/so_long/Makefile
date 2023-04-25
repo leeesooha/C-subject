@@ -1,10 +1,10 @@
 SRCS =	main.c free.c map_init.c arg_check.c creat_filehash.c key_hook.c \
 		map_print.c game_end_check.c valid_path_search.c \
-		my_str_put_windows.c enemy.c
+		my_str_put_windows.c enemy.c move_able_check.c
 SRCS_BONUS = main_bonus.c free_bonus.c map_init_bonus.c arg_check_bonus.c \
 		creat_filehash_bonus.c key_hook_bonus.c map_print_bonus.c \
 		game_end_check_bonus.c valid_path_search_bonus.c \
-		my_str_put_windows_bonus.c enemy_bonus.c
+		my_str_put_windows_bonus.c enemy_bonus.c move_able_check_bonus.c
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 CFLAGS = -Wall -Wextra -Werror

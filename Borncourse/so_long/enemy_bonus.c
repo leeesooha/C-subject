@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 21:38:43 by soohlee           #+#    #+#             */
-/*   Updated: 2023/04/24 18:38:39 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/04/25 20:52:13 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,22 +74,25 @@ int	modify_enemy_map(t_mlx_data *mlx_db, int xy[2])
 	return (0);
 }
 
-static int	modify_map(t_mlx_data *mlx_db, int enemy_num)
+static int	modify_map(t_mlx_data *mlx_db, int enemy_num, int x, int y)
 {
-	int	i;
-	int	j;
+	int	three_space;
 
-	i = -1;
-	while (mlx_db->map[++i] && enemy_num)
+	three_space = 0;
+	while (mlx_db->map[++y] && enemy_num)
 	{
-		j = -1;
-		while (mlx_db->map[i][++j])
+		x = -1;
+		while (mlx_db->map[y][++x])
 		{
-			if (((mlx_db->map[i][j] == '0' && i % 5 == 0)
-				|| (i == 1 && mlx_db->map[i][j] == '0'))
-				&& (mlx_db->map[i][j] != 'e'))
+			if (mlx_db->map[y][x] == '0')
+				three_space++;
+			else
+				three_space = 0;
+			if ((((mlx_db->map[y][x] == '0' && y % 5 == 0)
+					|| (y == 1 && mlx_db->map[y][x] == '0'))
+				&& (mlx_db->map[y][x] != 'e')) && three_space >= 3)
 			{
-				mlx_db->map[i][j] = 'D';
+				mlx_db->map[y][x] = 'D';
 				enemy_num--;
 				break ;
 			}
@@ -113,7 +116,7 @@ int	add_enemy(t_mlx_data *mlx_db)
 	else
 		enemy_num /= 5;
 	mlx_db->enemy_num = enemy_num;
-	modify_map(mlx_db, enemy_num);
+	modify_map(mlx_db, enemy_num, -1, -1);
 	i = -1;
 	while (++i < enemy_num)
 		mlx_db->enemy_direction[i] = 1;

@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 13:46:28 by soohlee           #+#    #+#             */
-/*   Updated: 2023/04/24 20:33:05 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/04/25 21:42:09 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int	free_filehash(t_mlx_data *mlx_db)
 	free (mlx_db->file[(int) 'O']);
 	free (mlx_db->file[(int) 'S']);
 	free (mlx_db->file[(int) 'D']);
+	free (mlx_db->file[(int) 'N']);
 	free (mlx_db->file);
 	return (1);
 }

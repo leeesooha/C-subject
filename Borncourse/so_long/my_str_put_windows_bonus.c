@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 18:32:23 by soohlee           #+#    #+#             */
-/*   Updated: 2023/04/24 19:54:53 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/04/25 19:26:58 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int	my_str_put_window(t_mlx_data *mlx_db, int width, int height, char img)
 			&(mlx_db->line_len), &(mlx_db->endian));
 	mlx_put_image_to_window(mlx_db->mlx, mlx_db->win, mlx_db->img,
 		(mlx_db->col_len -1) * width, 0 * height);
-	num = ft_itoa(++mlx_db->print_cnt);
+	ft_printf("%d\n", ++mlx_db->print_cnt);
+	num = ft_itoa(mlx_db->print_cnt);
 	if (!num)
 		ft_end(mlx_db, mlx_db->row_len, STRPUT_MALLOC_ERROR);
 	mlx_string_put(mlx_db->mlx, mlx_db->win,

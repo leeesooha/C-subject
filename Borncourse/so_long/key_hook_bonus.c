@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 16:57:58 by soohlee           #+#    #+#             */
-/*   Updated: 2023/04/24 20:23:02 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/04/25 21:13:18 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,35 +24,6 @@ int	key_hook(int keycode, t_mlx_data *mlx_db)
 	return (0);
 }
 
-int	move_able_check(int keycode, t_mlx_data *mlx_db)
-{
-	int	x;
-	int	y;
-
-	x = mlx_db->xy[0];
-	y = mlx_db->xy[1];
-	if (keycode == ESC)
-		ft_end(mlx_db, mlx_db->row_len, ESC);
-	else if ((mlx_db->map[y][x] == 'D' && (keycode != 13 && keycode != 1))
-			|| (keycode == 13 && mlx_db->map[y - 1][x] == 'D'))
-		ft_end(mlx_db, mlx_db->row_len, FAIL);
-	else if (keycode == 1 && mlx_db->map[y + 1][x] == 'D')
-		ft_end(mlx_db, mlx_db->row_len, FAIL);
-	else if (keycode == 0 && mlx_db->map[y][x - 1] == 'D')
-		ft_end(mlx_db, mlx_db->row_len, FAIL);
-	else if (keycode == 2 && mlx_db->map[y][x + 1] == 'D')
-		ft_end(mlx_db, mlx_db->row_len, FAIL);
-	else if (keycode == 13 && ft_strncmp(&mlx_db->map[y - 1][x], "1", 1))
-		return (1);
-	else if (keycode == 1 && ft_strncmp(&mlx_db->map[y + 1][x], "1", 1))
-		return (1);
-	else if (keycode == 0 && ft_strncmp(&mlx_db->map[y][x - 1], "1", 1))
-		return (1);
-	else if (keycode == 2 && ft_strncmp(&mlx_db->map[y][x + 1], "1", 1))
-		return (1);
-	return (0);
-}
-
 int	move_character(int keycode, t_mlx_data *mlx_db, int width, int height)
 {
 	int	sprite;
@@ -67,7 +38,10 @@ int	move_character(int keycode, t_mlx_data *mlx_db, int width, int height)
 	else
 		my_put_window(mlx_db, width, height, '0');
 	direction(mlx_db, keycode, &mlx_db->xy[0], &mlx_db->xy[1]);
-	my_put_window(mlx_db, width, height, 'P' - sprite);
+	if (mlx_db->map[mlx_db->xy[1]][mlx_db->xy[0]] == 'e')
+		my_put_window(mlx_db, width, height, 'N');
+	else
+		my_put_window(mlx_db, width, height, 'P' - sprite);
 	my_str_put_window(mlx_db, width, height, '1');
 	return (0);
 }
