@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 20:05:51 by soohlee           #+#    #+#             */
-/*   Updated: 2023/04/25 21:44:26 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/04/26 17:54:41 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct s_mlx_data
 	int			col_len;
 	int			enemy_num;
 	int			enemy_direction[500];
+	int			keycode;
 }	t_mlx_data;
 
 typedef struct s_map_data
@@ -145,5 +146,6 @@ keyhook_bonus
 int	my_str_put_window(t_mlx_data *mlx_db, int width, int height, char img);
 int	modify_enemy_map(t_mlx_data *mlx_db, int xy[2]);
 int	enemy_print(t_mlx_data *mlx_db, int x, int y, int xdir);
+int	space_check(t_mlx_data *mlx_db, int x, int y);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: soohlee <soohlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 16:57:58 by soohlee           #+#    #+#             */
-/*   Updated: 2023/04/25 21:42:24 by soohlee          ###   ########.fr       */
+/*   Updated: 2023/04/26 17:56:04 by soohlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	key_hook(int keycode, t_mlx_data *mlx_db)
 {
 	int	xy[2];
 
+	mlx_db->keycode = keycode;
 	modify_enemy_map(mlx_db, xy);
 	if (!move_able_check(keycode, mlx_db))
 		return (0);
