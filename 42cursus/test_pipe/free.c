@@ -50,8 +50,6 @@ int	close_pipe(t_data *data)
 {
 	close(data->pipefd1[0]);
 	close(data->pipefd1[1]);
-	close(data->pipefd2[0]);
-	close(data->pipefd2[1]);
 	close(data->infilefd);
 	close(data->outfilefd);
 	return (0);

@@ -27,8 +27,8 @@ typedef struct s_data
 	char	**envpaths;
 	char	**cmd;
 	int		pipefd1[2];
-	int		pipefd2[2];
 	int		ncmd;
+	int		tmp_fd;
 	char	*path_cmd;
 	char	**sp_cmd;
 	int		pipenum;

@@ -58,8 +58,6 @@ int	creat_pipe(t_data *data)
 	data->npipe = data->ncmd - 1;
 	if (pipe(data->pipefd1) < 0)
 		return (1);
-	if (pipe(data->pipefd2) < 0)
-		return (1);
 	return (0);
 }
 

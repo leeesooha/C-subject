@@ -29,6 +29,15 @@ int	child(t_data *data, int pid)
 		perror("execve fail");
 		exit (1);
 	}
+	else
+	{
+		if(!(data->pipenum == 0))
+			close (data->tmp_fd);
+		close(data->pipefd1[1]);
+		data->tmp_fd = data->pipefd1[0];
+		if (!(data->pipenum == data->ncmd - 1))
+			pipe(data->pipefd1);
+	}
 	return (0);
 }
 
@@ -37,7 +46,6 @@ int	infile_to_pipe(t_data *data)
 	if (data->infilefd == -1)
 		all_free(data, 2, 0, 0);
 	close(data->pipefd1[0]);
-	close(data->outfilefd);
 	dup2(data->infilefd, STDIN_FILENO);
 	dup2(data->pipefd1[1], STDOUT_FILENO);
 	close(data->pipefd1[1]);
@@ -47,26 +55,11 @@ int	infile_to_pipe(t_data *data)
 
 int	pipe_to_pipe(t_data *data)
 {
-	if (data->pipenum % 2 == 1)
-	{
-		close(data->pipefd1[1]);
-		close(data->infilefd);
-		close(data->outfilefd);
-		dup2(data->pipefd1[0], STDIN_FILENO);
-		dup2(data->pipefd1[1], STDOUT_FILENO);
-		close(data->pipefd1[0]);
-	}
-	else
-	{
-		close(data->pipefd1[0]);
-		close(data->pipefd2[1]);
-		close(data->infilefd);
-		close(data->outfilefd);
-		dup2(data->pipefd2[0], STDIN_FILENO);
-		dup2(data->pipefd1[1], STDOUT_FILENO);
-		close(data->pipefd2[0]);
-		close(data->pipefd1[1]);
-	}
+	close(data->pipefd1[0]);
+	dup2(data->tmp_fd, STDIN_FILENO);
+	dup2(data->pipefd1[1], STDOUT_FILENO);
+	close(data->tmp_fd);
+	close(data->pipefd1[1]);
 	return (0);
 }
 
@@ -74,27 +67,9 @@ int	pipe_to_outfile(t_data *data)
 {
 	if (data->outfilefd < 0)
 		all_free(data, 3, 0, 0);
-	if (data->pipenum % 2 == 0)
-	{
-		close(data->pipefd1[0]);
-		close(data->pipefd1[1]);
-		close(data->pipefd2[1]);
-		close(data->infilefd);
-		dup2(data->pipefd2[0], STDIN_FILENO);
-		dup2(data->outfilefd, STDOUT_FILENO);
-		close(data->pipefd2[0]);
-		close(data->outfilefd);
-	}
-	else
-	{
-		close(data->pipefd2[0]);
-		close(data->pipefd2[1]);
-		close(data->pipefd1[1]);
-		close(data->infilefd);
-		dup2(data->pipefd1[0], STDIN_FILENO);
-		dup2(data->outfilefd, STDOUT_FILENO);
-		close(data->pipefd1[0]);
-		close(data->outfilefd);
-	}
+	dup2(data->tmp_fd, STDIN_FILENO);
+	dup2(data->outfilefd, STDOUT_FILENO);
+	close(data->tmp_fd);
+	close(data->outfilefd);
 	return (0);
 }
