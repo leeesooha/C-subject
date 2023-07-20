@@ -26,11 +26,12 @@ typedef struct s_data
 	char	**envp;
 	char	**envpaths;
 	char	**cmd;
+	int		pipefd1[2];
 	int		ncmd;
+	int		tmp_fd;
 	char	*path_cmd;
 	char	**sp_cmd;
 	int		pipenum;
-	int		**pipefd;
 	int		npipe;
 	int		hdflag;
 	int		infilefd;
@@ -54,7 +55,7 @@ child
 int		child(t_data *data, int pid);
 int		infile_to_pipe(t_data *data);
 int		pipe_to_outfile(t_data *data);
-int		pipe_to_pipe(t_data *data, int current, int next);
+int		pipe_to_pipe(t_data *data);
 
 /*
 cmd_check

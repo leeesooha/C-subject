@@ -1,1 +1,18 @@
-       8
+Makefile
+child.c
+child.o
+cmd_check.c
+cmd_check.o
+creatdata.c
+creatdata.o
+free.c
+free.o
+heredoc.c
+heredoc.o
+infile
+libft
+main.c
+main.o
+outfile
+pipex
+pipex.h

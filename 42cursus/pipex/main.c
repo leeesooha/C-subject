@@ -24,16 +24,15 @@ int	main(int argc, char **argv, char **envp)
 	creat_pipe(&data);
 	file_check(&data);
 	i = 0;
-	data.pipenum = i;
-	while (i <= data.npipe)
+	data.pipenum = 0;
+	while (i < data.ncmd)
 	{
 		child(&data, 0);
-		i++;
-		data.pipenum = i;
+		data.pipenum = ++i;
 	}
 	close_pipe(&data);
 	while (wait(0) > 0)
-		write(1, "", 0);
+	 	;
 	unlink(".here_doc_tmp");
 	all_free(&data, 3, 0, 10);
 	return (0);

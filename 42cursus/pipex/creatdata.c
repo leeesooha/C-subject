@@ -55,23 +55,9 @@ int	creat_cmd(t_data *data)
 
 int	creat_pipe(t_data *data)
 {
-	int	i;
-
 	data->npipe = data->ncmd - 1;
-	data->pipefd = (int **)malloc(sizeof(int *) * (data->npipe + 1));
-	if (!data->pipefd)
-		all_free(data, 2, 0, 1);
-	i = 0;
-	while (i < data->npipe)
-	{
-		(data->pipefd)[i] = (int *)malloc(sizeof(int) * 2);
-		if (!(data->pipefd)[i])
-			all_free(data, 3, 0, 1);
-		if (pipe(data->pipefd[i]) == -1)
-			all_free(data, 3, 0, 1);
-		i++;
-	}
-	data->pipefd[i] = 0;
+	if (pipe(data->pipefd1) < 0)
+		return (1);
 	return (0);
 }
 
