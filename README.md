@@ -1,7 +1,7 @@
-LaPiscine
+Piscine
 1. all C source code, make basic function etc... 
 
-42coursus
+coursus
 1. libft.
     create library.
 2. ft_printf.
