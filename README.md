@@ -1,5 +1,3 @@
-# 42seoul
-
 LaPiscine
 1. all C source code, make basic function etc... 
 
