@@ -1,22 +1,39 @@
-Piscine
-1. all C source code, make basic function etc... 
+1. Libft
+나만의 C 라이브러리를 직접 만드는 프로젝트입니다.
 
-coursus
-1. libft.
-    create library.
-2. ft_printf.
-    create printf.
-3. get_next_line.
-    create get_next_line (It is very similar to the "fgets" function.)
-4. born2beroot.
-    virtual machine subject, So no source code.
-4. push_swap.
-    Sort the numbers in ascending order using only 2 storage spaces.
-    Storage is similar to a deque. Data Access is only available in eight tools.
-    The tools are push and pop, taking deque data structures as an example.
-5. pipex.
-    create unix's pipex
-6. so_long.
-    create game (use minimlx lib.)
-7. minishell.
-    create shell
+다양한 함수들을 구현하여 라이브러리로 관리합니다.
+
+2. ft_printf
+표준 라이브러리 printf 함수를 직접 구현하는 프로젝트입니다.
+
+포맷 지정자 처리 및 출력 기능을 개발합니다.
+
+3. get_next_line
+파일에서 한 줄씩 읽어오는 함수 구현 프로젝트입니다.
+
+표준 함수 fgets와 유사한 기능을 제공합니다.
+
+4. born2beroot
+가상 머신 환경을 구성하는 프로젝트로, 소스 코드는 제공되지 않습니다.
+
+시스템 보안 및 리눅스 환경 설정 실습입니다.
+
+5. push_swap
+두 개의 스택(덱)을 이용해 숫자들을 오름차순으로 정렬하는 프로젝트입니다.
+
+제한된 명령어(총 8가지)만 사용 가능하며, 스택 조작 알고리즘을 구현합니다.
+
+6. pipex
+유닉스 파이프 명령어를 구현하는 프로젝트입니다.
+
+여러 프로세스 간 데이터 흐름을 파이프로 연결하는 기능을 개발합니다.
+
+7. so_long
+MiniLibX 라이브러리를 활용해 2D 게임을 만드는 프로젝트입니다.
+
+게임 로직과 그래픽 출력, 사용자 입력 처리를 포함합니다.
+
+8. minishell
+쉘(shell) 프로그램을 구현하는 프로젝트입니다.
+
+명령어 파싱, 실행, 기본 쉘 기능을 구현합니다.
